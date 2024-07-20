@@ -20,7 +20,7 @@ function OpenInVSCode({ path }: { path: string }) {
     <div>
       <div className="flex gap-3">
         <Button variant="outline" type="button" onClick={handleOpenInVSCode}>
-          Edit File In VS Code
+        ویرایش فایل در VS Code
         </Button>
       </div>
     </div>
