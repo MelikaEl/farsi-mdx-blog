@@ -21,7 +21,7 @@
   },
   {
     "slug": "second-post",
-    "id": "74a25f0d-a708-47f2-b31f-50c798570cbc",
+    "id": "24a25f0d-a708-47f2-b31f-50c798570cbc",
     "type": "وبلاگ",
     "author": "او ولفسون",
     "title": "اولین پست",
@@ -37,6 +37,6 @@
       "اچ‌تی‌ام‌ال"
     ],
     "image": "/images/default.jpg",
-    "path": "اولین-پست.mdx"
+    "path": "second-post.mdx"
   }
 ]
