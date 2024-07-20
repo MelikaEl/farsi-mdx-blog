@@ -8,7 +8,7 @@ async function EditBlog({ params }: { params: { slug: string } }) {
     <div className="w-full max-w-xl">
       <div className="flex flex-col gap-10">
         <h1 className="text-4xl sm:text-5xl font-bold text-center">
-          Edit Post
+          ویرایش پست
         </h1>
         <EditPostForm postData={postData} />
       </div>

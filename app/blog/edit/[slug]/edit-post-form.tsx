@@ -59,13 +59,13 @@ const formSchema = z.object({
   date: z.date(),
   type: z.string().optional(),
   title: z.string().min(3, {
-    message: "Title must be at least 2 characters.",
+    message: "عنوان باید حداقل 2 کاراکتر باشد.",
   }),
   description: z.string().min(15, {
-    message: "Description must be at least 15 characters.",
+    message: "توضیحات باید حداقل 15 کاراکتر باشد.",
   }),
   content: z.string().min(2, {
-    message: "Content must be at least 2 characters.",
+    message: "محتوا باید حداقل 2 کاراکتر باشد.",
   }),
   categories: z.array(z.string()).nonempty(),
   tags: z.string().optional(),
@@ -175,6 +175,9 @@ export function EditPostForm({ postData }: { postData: any }) {
     console.log("delete post");
   };
 
+
+  const direction = "rtl" ;
+
   return (
     <>
       <Form {...form}>
@@ -184,20 +187,20 @@ export function EditPostForm({ postData }: { postData: any }) {
             name="type"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Post Type</FormLabel>
+                <FormLabel>نوع پست</FormLabel>
 
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
                   <FormControl>
-                    <SelectTrigger className="w-[180px]">
+                    <SelectTrigger className="w-[180px]" dir={direction}>
                       <SelectValue placeholder="Select post type" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent>
-                    <SelectItem value="blog">Blog</SelectItem>
-                    <SelectItem value="project">Project</SelectItem>
+                  <SelectContent dir={direction}>
+                    <SelectItem value="blog">وبلاگ</SelectItem>
+                    <SelectItem value="project">پروژه</SelectItem>
                   </SelectContent>
                 </Select>
 
@@ -211,7 +214,7 @@ export function EditPostForm({ postData }: { postData: any }) {
             name="date"
             render={({ field }) => (
               <FormItem className="flex flex-col">
-                <FormLabel className="font-semibold text-md">Date</FormLabel>
+                <FormLabel className="font-semibold text-md">تاریخ</FormLabel>
                 <DatePickerField field={field} />
                 {/* <FormDescription>
                 Your date of birth is used to calculate your age.
@@ -225,9 +228,9 @@ export function EditPostForm({ postData }: { postData: any }) {
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Post Title</FormLabel>
+                <FormLabel>عنوان پست</FormLabel>
                 <FormControl>
-                  <Input placeholder="Title" {...field} />
+                  <Input placeholder="عنوان" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -238,9 +241,9 @@ export function EditPostForm({ postData }: { postData: any }) {
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Description</FormLabel>
+                <FormLabel>شرح</FormLabel>
                 <FormControl>
-                  <Textarea placeholder="Description" {...field} />
+                  <Textarea placeholder="شرح" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -251,12 +254,12 @@ export function EditPostForm({ postData }: { postData: any }) {
             name="content"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Content</FormLabel>
+                <FormLabel>محتوا</FormLabel>
                 <FormControl>
                   <Textarea
                     id="content"
                     className="h-[300px]"
-                    placeholder="Content"
+                    placeholder="محتوا"
                     {...field}
                   />
                 </FormControl>
@@ -270,7 +273,7 @@ export function EditPostForm({ postData }: { postData: any }) {
             name="categories"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>categories</FormLabel>
+                <FormLabel>دسته بندی ها</FormLabel>
                 <FormControl>
                   <MultiSelect
                     selectedCategories={field.value}
@@ -286,10 +289,10 @@ export function EditPostForm({ postData }: { postData: any }) {
             name="tags"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Tags</FormLabel>
+                <FormLabel>برچسب ها</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Enter tags (comma separated)"
+                    placeholder="برچسب ها را وارد کنید (با کاما از هم جدا باشند)"
                     {...field}
                   />
                 </FormControl>
@@ -298,15 +301,15 @@ export function EditPostForm({ postData }: { postData: any }) {
             )}
           />
           <div className="flex gap-3">
-            <Button type="submit">Save Edits</Button>
+            <Button type="submit">ذخیره ویرایش ها</Button>
             <Button type="button" onClick={handleOpenInVSCode}>
-              Open File In VS Code
+            فایل را در VS Code باز کنید
             </Button>
           </div>
         </form>
       </Form>
       {/* <CachePostsButton /> */}
-      <Dialog>
+      <Dialog >
         <DialogTrigger asChild>
           <div>
             <Button
@@ -314,25 +317,25 @@ export function EditPostForm({ postData }: { postData: any }) {
               type="button"
               // onClick={handleDeletePost}
             >
-              Delete Post
+              حذف پست
             </Button>
           </div>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Delete Post</DialogTitle>
-            <DialogDescription>
-              Are you sure you want to delete the current post?
+        <DialogContent className="sm:max-w-[425px]" >
+          <DialogHeader >
+            <DialogTitle >حذف پست</DialogTitle>
+            <DialogDescription >
+            آیا مطمئن هستید که می خواهید پست فعلی را حذف کنید؟
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4"></div>
           <DialogFooter>
             <div className="w-full flex gap-4">
               <Button variant="destructive" onClick={handleDeletePost}>
-                OK Delete Post
+              حذف پست
               </Button>
               <DialogClose className="bg-gray-300 text-black px-4 py-2 rounded">
-                <span className="text-sm">No Cancel</span>
+                <span className="text-sm">انصراف</span>
               </DialogClose>
             </div>
           </DialogFooter>

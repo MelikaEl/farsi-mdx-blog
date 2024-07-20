@@ -8,7 +8,7 @@ function EditPostButton({ slug, author }: { slug: string; author: string }) {
   return (
     <div>
       <Link href={`/blog/edit/${slug}`}>
-        <Button variant="outline">Edit Post</Button>
+        <Button variant="outline">ویرایش پست</Button>
       </Link>
     </div>
   );
