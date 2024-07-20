@@ -89,14 +89,14 @@ export const columns: ColumnDef<Post>[] = [
   },
 
   {
-    accessorKey: "date",
+    accessorKey: "تاریخ",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Date
+          تاریخ
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
@@ -117,14 +117,14 @@ export const columns: ColumnDef<Post>[] = [
   },
 
   {
-    accessorKey: "type", // Access the 'type' attribute of your data
+    accessorKey: "نوع", // Access the 'type' attribute of your data
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Type
+          نوع
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
@@ -133,14 +133,14 @@ export const columns: ColumnDef<Post>[] = [
   },
 
   {
-    accessorKey: "title",
+    accessorKey: "عنوان",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Title
+          عنوان
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
@@ -166,14 +166,14 @@ export const columns: ColumnDef<Post>[] = [
   },
 
   {
-    accessorKey: "status",
+    accessorKey: "وضعیت",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Status
+          وضعیت
         </Button>
       );
     },
@@ -186,7 +186,7 @@ export const columns: ColumnDef<Post>[] = [
       const postDate = new Date(row.getValue("date"));
 
       // Determine the status based on the date
-      const status = postDate <= currentDate ? "published" : "unpublished";
+      const status = postDate <= currentDate ? "منتشر شده" : "منتشر نشده";
 
       return <div className="capitalize">{status}</div>;
     },
@@ -198,8 +198,10 @@ export const columns: ColumnDef<Post>[] = [
     cell: ({ row }) => {
       const post = row.original;
 
+      const direction = "rtl" ;
+
       return (
-        <DropdownMenu>
+        <DropdownMenu dir={direction}>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-8 w-8 p-0">
               <span className="sr-only">Open menu</span>
@@ -207,15 +209,15 @@ export const columns: ColumnDef<Post>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuLabel>اقدامات</DropdownMenuLabel>
             <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(post.id)}
             >
-              Copy post ID
+              کپی شناسه پست
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <Link href={`/blog/edit/${post.slug}`}>Edit</Link>
+              <Link href={`/blog/edit/${post.slug}`}>ویرایش</Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -304,11 +306,13 @@ export function DataTable() {
     },
   });
 
+  const direction = "rtl" ;
+
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Search posts..."
+          placeholder="جستجوی پست ها..."
           // Use a global filter value from the table state
           value={table.getState().globalFilter ?? ""}
           onChange={(event) => {
@@ -320,7 +324,7 @@ export function DataTable() {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
-              Columns <ChevronDownIcon className="ml-2 h-4 w-4" />
+              ستون ها <ChevronDownIcon className="ml-2 h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -330,6 +334,7 @@ export function DataTable() {
               .map((column) => {
                 return (
                   <DropdownMenuCheckboxItem
+                  dir={direction}
                     key={column.id}
                     className="capitalize"
                     checked={column.getIsVisible()}
@@ -396,8 +401,8 @@ export function DataTable() {
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
+          {table.getFilteredSelectedRowModel().rows.length} از{" "}
+          {table.getFilteredRowModel().rows.length} ردیف(ها) انتخاب شده است.
         </div>
         <div className="space-x-2">
           <Button
@@ -406,7 +411,7 @@ export function DataTable() {
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            Previous
+            قبلی
           </Button>
           <Button
             variant="outline"
@@ -414,7 +419,7 @@ export function DataTable() {
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            Next
+            بعدی
           </Button>
         </div>
       </div>

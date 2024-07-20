@@ -13,7 +13,7 @@ export default function Settings() {
 
   return (
     <div className="w-full px-6">
-      <div className="text-xl font-bold">Posts</div>
+      <div className="text-xl font-bold">پست ها</div>
       <DataTable />
     </div>
   );
