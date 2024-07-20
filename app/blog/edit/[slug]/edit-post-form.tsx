@@ -6,7 +6,16 @@ import { parseISO } from "date-fns";
 
 import { useRouter } from "next/navigation";
 
-import DatePickerField from "@/components/date-picker";
+
+
+//import DatePickerField from "@/components/date-picker";
+
+import DatePicker from "react-multi-date-picker";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
+
+
+
 import { format } from "date-fns";
 
 // import CachePostsButton from "@/components/admin/cache-posts-button";
@@ -215,7 +224,20 @@ export function EditPostForm({ postData }: { postData: any }) {
             render={({ field }) => (
               <FormItem className="flex flex-col">
                 <FormLabel className="font-semibold text-md">تاریخ</FormLabel>
-                <DatePickerField field={field} />
+                <div style={{ direction: "rtl" }}>
+                <DatePicker
+                  calendar={persian}
+                  locale={persian_fa}
+                  calendarPosition="bottom-right"
+                />
+              </div>
+                
+                
+                
+                {/*<DatePickerField field={field} />*/}
+
+
+
                 {/* <FormDescription>
                 Your date of birth is used to calculate your age.
               </FormDescription> */}

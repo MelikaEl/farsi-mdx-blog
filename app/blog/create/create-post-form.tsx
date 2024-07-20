@@ -4,7 +4,19 @@ import React, { useState, useEffect } from "react";
 
 import { generatePostsCache } from "@/lib/posts-utils.mjs";
 
-import DatePickerField from "@/components/date-picker";
+//import DatePickerField from "@/components/date-picker";
+
+//import { Calendar } from "react-multi-date-picker";
+//import persian from "react-date-object/calendars/persian";
+//import persian_fa from "react-date-object/locales/persian_fa";
+
+import DatePicker from "react-multi-date-picker";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
+
+//import DatePicker from "react-multi-date-picker"
+//import favorite_calendar from "react-date-object/calendars/persian
+//import react-date-object/locales/persian_fa
 
 // import { useUser } from "@clerk/nextjs";
 
@@ -125,8 +137,7 @@ export function CreatePostForm() {
     }
   }
 
-
-  const direction = "rtl" ;
+  const direction = "rtl";
 
   return (
     <Form {...form}>
@@ -159,9 +170,21 @@ export function CreatePostForm() {
           control={form.control}
           name="date"
           render={({ field }) => (
-            <FormItem className="flex flex-col" >
-              <FormLabel  className="font-semibold text-md">تاریخ</FormLabel>
-              <DatePickerField field={field} />
+            <FormItem className="flex flex-col">
+              <FormLabel className="font-semibold text-md">تاریخ</FormLabel>
+
+              <div style={{ direction: "rtl" }}>
+                <DatePicker
+                  calendar={persian}
+                  locale={persian_fa}
+                  calendarPosition="bottom-right"
+                />
+              </div>
+              {/*<DatePickerField field={field} />*/}
+
+              {/*<DatePicker />*/}
+              {/*<Calendar calendar={persian} locale={persian_fa} />*/}
+
               {/* <FormDescription>
                 Your date of birth is used to calculate your age.
               </FormDescription> */}
@@ -253,7 +276,10 @@ export function CreatePostForm() {
             <FormItem>
               <FormLabel>برچسب ها</FormLabel>
               <FormControl>
-                <Input placeholder="برچسب ها را وارد کنید (با کاما از هم جدا باشند)" {...field} />
+                <Input
+                  placeholder="برچسب ها را وارد کنید (با کاما از هم جدا باشند)"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
