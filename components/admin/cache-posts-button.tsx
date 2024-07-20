@@ -33,12 +33,12 @@ function CachePostsButton() {
       {isDevMode() && (
         <div>
           <Button
-            title="Cache posts to update blog roll."
+            title="پست‌های کش برای به‌روزرسانی رول وبلاگ."
             onClick={handleCachePosts}
           >
             <div className="flex gap-2 items-center">
               {" "}
-              <FileIcon /> Cache Posts
+              <FileIcon /> ذخیره پست ها
             </div>
           </Button>
         </div>

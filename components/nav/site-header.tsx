@@ -18,13 +18,13 @@ export function SiteHeader() {
             {isDevMode() && (
               <>
                 {" "}
-                <Link title="Create post" href="/blog/create">
+                <Link title="ایجاد پست" href="/blog/create">
                   <Button variant="outline" size="icon">
                     <PlusIcon className="w-[18px] h-[18px]" />
                   </Button>
                 </Link>
                 {/* <CachePostsButton /> */}
-                <Link title="Setting" href="/settings">
+                <Link title="تنظیمات" href="/settings">
                   <Button variant="outline" size="icon">
                     <GearIcon className="w-[18px] h-[18px]" />
                   </Button>

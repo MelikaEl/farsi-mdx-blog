@@ -4,7 +4,7 @@ export default function About() {
   return (
     <div className="flex flex-col gap-8 max-w-xl">
       <h1 className="text-4xl sm:text-5xl font-bold text-center">
-        About <span className="primary-color">MDX</span>Blog
+       <span>درباره وبلاگ{" "}</span><span className="primary-color">آتریپا</span>
       </h1>
       <ReactMarkdown className="flex flex-col gap-6">
         {aboutContent}
@@ -15,61 +15,67 @@ export default function About() {
 
 const aboutContent = `
 
-[**MDXBlog** (mdxblog.io)](https://mdxblog.io) is an independently created blog app template built with the latest web technologies, offering a unique blogging experience. MDXBlog is a simple template for creating blogs using MDX (Markdown + JSX) and Next.js 14. We have no official affiliation with the MDX team or Next.js, we are simply fans of the technology and wanted to create a simple, free, easy-to-use blog template for the community.
+# درباره MDXBlog
 
-Unlike traditional blogging solutions that rely on a database to store content, content management in MDXBlog is handled by easily editable Markdown (mdx) files in a folder on your local machine! It's a good solution for those who appreciate the ease of Markdown and the power of React components. 
+برخلاف راه‌حل‌های سنتی وبلاگ‌نویسی که برای ذخیره محتوا به پایگاه داده متکی هستند، مدیریت محتوا در MDXBlog از طریق فایل‌های Markdown (mdx) که به راحتی قابل ویرایش هستند و در یک پوشه روی دستگاه محلی شما قرار دارند، انجام می‌شود! این یک راه‌حل مناسب برای کسانی است که سادگی Markdown و قدرت کامپوننت‌های React را ارج می‌نهند.
 
-Our project is fully accessible on **[GitHub](https://github.com/owolfdev/mdx-blog-basic)**.
+MDXBlog (mdxblog.io) یک قالب برنامه وبلاگ است که به طور مستقل با جدیدترین فناوری‌های وب ساخته شده و تجربه وبلاگ‌نویسی منحصر به فردی را ارائه می‌دهد. MDXBlog یک قالب ساده برای ایجاد وبلاگ با استفاده از MDX (Markdown + JSX) و Next.js 14 است. ما هیچ وابستگی رسمی با تیم MDX یا Next.js نداریم، ما صرفاً طرفداران این فناوری هستیم و می‌خواستیم یک قالب وبلاگ ساده، رایگان و آسان برای استفاده جامعه ایجاد کنیم.
 
-Find relevant articles on the blog, including:
+پروژه ما به طور کامل در GitHub در دسترس است.
 
-- • [Installation](https://www.mdxblog.io//blog/how-to-install-mdx-blog-and-deploy-on-vercel)
-- • [A User Guide](https://www.mdxblog.io//blog/how-to-use-mdx-blog)
-- • [Development Insights](https://www.mdxblog.io//blog/rendering-mdx-content-in-next.js-14)
+مقالات مرتبط را در وبلاگ پیدا کنید، از جمله:
 
-**Getting Started**
+• نصب
+• راهنمای کاربر
+• بینش‌های توسعه
 
-**Installation:** 
-- • Clone the [**repo**](https://github.com/owolfdev/mdx-blog-basic)
-- • Run 'npm install'
-- • Run 'npm run dev'
-- • Open 'http://localhost:3000' in your browser
-- • Create a remote repo on GitHub
-- • Push your local repo to GitHub
-- • Deploy on Vercel
+## شروع کار
 
-**Create a post:**
-- • Use the '+' icon in the nav bar, in development mode only, to create a new post - or simply create a new MDX file in the 'data/posts' directory, manually. 
-- • Edit posts in the browser or manually using VS Code (recommended), or any other text editor.
+### نصب:
 
-**Key Features of MDX Blog:**
+• مخزن را کلون کنید
+• 'npm install' را اجرا کنید
+• 'npm run dev' را اجرا کنید
+• 'http://localhost:3000' را در مرورگر خود باز کنید
+• یک مخزن از راه دور در GitHub ایجاد کنید
+• مخزن محلی خود را به GitHub پوش کنید
+• روی Vercel مستقر کنید
 
-- • **Next.js 14 & App Router**: Utilizing the cutting-edge features of Next.js 14, MDX Blog offers a seamless and efficient user experience, underpinned by the powerful app router for smooth navigation.
+### ایجاد یک پست:
 
-- • [**Deployed on Vercel**:](https://vercel.com) Experience the reliability and speed of Vercel, ensuring that our static blog site is always available and performs exceptionally.
+• از آیکون '+' در نوار ناوبری، فقط در حالت توسعه، برای ایجاد یک پست جدید استفاده کنید - یا به سادگی یک فایل MDX جدید در دایرکتوری 'data/posts' به صورت دستی ایجاد کنید.
+• پست‌ها را در مرورگر یا به صورت دستی با استفاده از VS Code (توصیه شده) یا هر ویرایشگر متن دیگری ویرایش کنید.
 
-- • **SEO Optimized**: With automatic sitemap generation at build time through 'next sitemap', our platform is finely tuned for search engine optimization, enhancing the visibility and reach of your content.
+## ویژگی‌های کلیدی MDX Blog:
 
-- • **Dynamic Publishing**: Our platform smartly handles future-dated posts, ensuring they are published only on or after their set date, thanks to a meticulous filtering system.
+• **Next.js 14 و App Router:** با استفاده از ویژگی‌های پیشرفته Next.js 14، MDX Blog تجربه کاربری روان و کارآمدی را ارائه می‌دهد که توسط روتر قدرتمند برنامه برای ناوبری روان پشتیبانی می‌شود.
 
-- • **Development Mode Features**: In development mode, users can swiftly create new posts using the '+' icon, streamlining the content creation process.
+• **مستقر شده روی Vercel:** قابلیت اطمینان و سرعت Vercel را تجربه کنید که اطمینان می‌دهد سایت وبلاگ استاتیک ما همیشه در دسترس است و عملکرد فوق‌العاده‌ای دارد.
 
-- • **Flexible Content Editing**: Edit your MDX (Markdown + JSX) posts with ease, either directly in the browser or using VS Code, providing a flexible and user-friendly environment for content creators.
+• **بهینه‌سازی شده برای SEO:** با تولید خودکار نقشه سایت در زمان ساخت از طریق 'next sitemap'، پلتفرم ما برای بهینه‌سازی موتور جستجو تنظیم شده است و دید و دسترسی محتوای شما را افزایش می‌دهد.
 
-**Custom MDX Components:**
-- **<YouTube />**: Seamlessly embed YouTube videos within your content.
-- **<Image />**: Integrate images elegantly, enhancing the visual appeal of your posts.
-- **code**: Include and showcase code snippets with clarity and style.
+• **انتشار پویا:** پلتفرم ما به طور هوشمندانه پست‌های با تاریخ آینده را مدیریت می‌کند و اطمینان می‌دهد که آنها فقط در تاریخ تعیین شده یا پس از آن منتشر می‌شوند، به لطف یک سیستم فیلترینگ دقیق.
 
-### **Dynamic Page Rendering**
+• **ویژگی‌های حالت توسعه:** در حالت توسعه، کاربران می‌توانند به سرعت با استفاده از آیکون '+' پست‌های جدید ایجاد کنند که فرآیند تولید محتوا را ساده می‌کند.
 
-Our dynamic page rendering system is the backbone of MDX Blog, carefully extracting and presenting content. It leverages the next-mdx-remote/rsc for rendering MDX content, along with custom components like YouTube, Image, and Code, bringing a rich and interactive blogging experience.
+• **ویرایش محتوای انعطاف‌پذیر:** پست‌های MDX (Markdown + JSX) خود را به راحتی ویرایش کنید، چه مستقیماً در مرورگر یا با استفاده از VS Code، که محیطی انعطاف‌پذیر و کاربرپسند برای تولیدکنندگان محتوا فراهم می‌کند.
 
-**Development Insights:**
-- • Utilizing gray-matter for front matter parsing, we extract crucial metadata for SEO and rendering purposes.
-- • Only relevant posts are displayed, based on their publication date.
-- • In development mode, additional tools like EditPostButton and OpenInVSCode are available, enhancing the ease of content management and editing.
+### کامپوننت‌های سفارشی MDX:
 
-**MDX Blog** represents a blend of technological innovation and user-centric design, providing a platform that's not only a pleasure to use but also powerful in its capabilities. Whether you're a developer, a content creator, or someone passionate about blogging, MDX Blog offers you the tools to share your stories and ideas with the world effortlessly.
+**<YouTube />**: ویدیوهای YouTube را به راحتی در محتوای خود جاسازی کنید.
+**<Image />**: تصاویر را به زیبایی ادغام کنید و جذابیت بصری پست‌های خود را افزایش دهید.
+**code**: قطعات کد را با وضوح و سبک نمایش دهید و ارائه کنید.
+
+## رندر صفحه پویا
+
+سیستم رندر صفحه پویای ما ستون فقرات MDX Blog است که با دقت محتوا را استخراج و ارائه می‌کند. این سیستم از next-mdx-remote/rsc برای رندر محتوای MDX، همراه با کامپوننت‌های سفارشی مانند YouTube، Image و Code استفاده می‌کند و تجربه وبلاگ‌نویسی غنی و تعاملی را به ارمغان می‌آورد.
+
+## بینش‌های توسعه:
+
+• با استفاده از gray-matter برای تجزیه front matter، ما متادیتای مهم را برای اهداف SEO و رندر استخراج می‌کنیم.
+• فقط پست‌های مرتبط بر اساس تاریخ انتشارشان نمایش داده می‌شوند.
+• در حالت توسعه، ابزارهای اضافی مانند EditPostButton و OpenInVSCode در دسترس هستند که سهولت مدیریت و ویرایش محتوا را افزایش می‌دهند.
+
+MDX Blog نشان‌دهنده ترکیبی از نوآوری فناوری و طراحی کاربرمحور است که پلتفرمی را ارائه می‌دهد که نه تنها استفاده از آن لذت‌بخش است، بلکه در قابلیت‌های خود نیز قدرتمند است. چه شما یک توسعه‌دهنده باشید، یک تولیدکننده محتوا یا کسی که به وبلاگ‌نویسی علاقه‌مند است، MDX Blog ابزارهایی را برای به اشتراک گذاشتن داستان‌ها و ایده‌های شما با جهان به راحتی ارائه می‌دهد.
 
 `;

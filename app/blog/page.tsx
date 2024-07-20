@@ -110,7 +110,7 @@ const Blog = async ({
             </span>
           )}
           {isPreviousDisabled ? (
-            <span className={`${disabledLinkStyle}`}>Previous</span>
+            <span className={`${disabledLinkStyle}`}>قبلی</span>
           ) : (
             <Link
               className={``}
@@ -122,10 +122,10 @@ const Blog = async ({
             </Link>
           )}
 
-          <span>- {`Page ${currentPage} of ${totalPages}`} -</span>
+          <span>- {`صفحه ${currentPage} از ${totalPages}`} -</span>
 
           {isNextDisabled ? (
-            <span className={`${disabledLinkStyle}`}>Next</span>
+            <span className={`${disabledLinkStyle}`}>بعدی</span>
           ) : (
             <Link
               className={``}

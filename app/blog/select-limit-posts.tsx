@@ -67,7 +67,7 @@ function SelectLimitPosts({
   return (
     <div>
       <div className="text-center">
-        <label htmlFor="postsPerPage">Posts per page:</label>
+        <label htmlFor="postsPerPage">پست ها در هر صفحه:</label>
         <select
           id="postsPerPage"
           value={localPostsPerPage}

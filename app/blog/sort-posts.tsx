@@ -65,6 +65,8 @@ function SortPosts({
     setSortOrder((prevSortOrder) => (prevSortOrder === "asc" ? "desc" : "asc"));
   };
 
+  const direction = "rtl" ;
+
   return (
     <div className="w-1/2 sm:w-1/3 flex gap-2 items-center">
       {sortOrder === "asc" ? (
@@ -78,6 +80,7 @@ function SortPosts({
             <SelectValue placeholder="Sort By" />
           </SelectTrigger>
           <SelectContent
+            dir={direction}
             ref={(ref) => {
               if (!ref) return;
               ref.ontouchstart = (e) => {
@@ -86,10 +89,10 @@ function SortPosts({
             }}
           >
             <SelectItem value="date">
-              <span className="sm:text-sm text-lg">Date</span>
+              <span className="sm:text-sm text-lg">تاریخ</span>
             </SelectItem>
             <SelectItem value="title">
-              <span className="sm:text-sm text-lg">Title</span>
+              <span className="sm:text-sm text-lg">عنوان</span>
             </SelectItem>
           </SelectContent>
         </Select>

@@ -7,17 +7,17 @@ export function Footer() {
         <div className="flex gap-6 items-center">
           <div className="">
             &copy; {new Date().getFullYear()}{" "}
-            <span className="font-bold">MDXBlog</span> created by{" "}
+            <span className="font-bold">وبلاگ آتریپا</span> ایجاد شده توسط {" "}
             <Link target="_blank" href="https://owolf.com">
-              OWolf
+              ملیکا اعلامی
             </Link>
           </div>
         </div>
         <nav className="flex gap-4 items-center text-sm">
-          <Link href="/">Home</Link>
-          <Link href="/blog">Blog</Link>
-          <Link href="/about">About</Link>
-          <Link href="/privacy">Privacy</Link>
+          <Link href="/">صفحه اصلی</Link>
+          <Link href="/blog">وبلاگ</Link>
+          <Link href="/about">درباره ما</Link>
+          <Link href="/privacy">حریم خصوصی</Link>
         </nav>
       </div>
     </footer>

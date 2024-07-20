@@ -18,5 +18,25 @@
     ],
     "image": "/images/default.jpg",
     "path": "a-first-post.mdx"
+  },
+  {
+    "slug": "second-post",
+    "id": "74a25f0d-a708-47f2-b31f-50c798570cbc",
+    "type": "وبلاگ",
+    "author": "او ولفسون",
+    "title": "اولین پست",
+    "date": "2024-04-18",
+    "description": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.",
+    "categories": [
+      "توسعه وب"
+    ],
+    "tags": [
+      "ری‌اکت",
+      "جاوااسکریپت",
+      "mdx",
+      "اچ‌تی‌ام‌ال"
+    ],
+    "image": "/images/default.jpg",
+    "path": "اولین-پست.mdx"
   }
 ]

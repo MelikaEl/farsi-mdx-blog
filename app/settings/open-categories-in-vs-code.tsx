@@ -15,10 +15,10 @@ function OpenCategoriesInVSCode() {
   return (
     <div>
       <Button
-        title="Open local categories list file in VS code for editing."
+        title="فایل فهرست دسته بندی های محلی را در کد VS برای ویرایش باز کنید."
         onClick={handleOpenCategoriesInVSCode}
       >
-        Open Categories List in VS Code
+        لیست دسته ها را در VS Code باز کنید
       </Button>
     </div>
   );

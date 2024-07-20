@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+import { Dosis, Vazirmatn } from "next/font/google";
+
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/nav/site-header";
 import { Footer } from "@/components/nav/footer";
@@ -9,6 +11,10 @@ import { Footer } from "@/components/nav/footer";
 import CookieConsentComponent from "@/components/cookie-consent";
 
 const inter = Inter({ subsets: ["latin"] });
+
+
+const dosis = Dosis({ subsets: ["latin"] });
+const vazirmatn = Vazirmatn({ subsets: ["arabic"] });
 
 export const metadata: Metadata = {
   title: "MDX Blog Basic",
@@ -23,9 +29,13 @@ export default function RootLayout({
   children: React.ReactNode;
   slug?: string;
 }) {
+
+  const direction = "rtl" ;
+  const font = vazirmatn;
+
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" dir={direction}>
+      <body className={font.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

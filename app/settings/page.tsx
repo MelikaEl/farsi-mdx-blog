@@ -6,26 +6,24 @@ import { Button } from "@/components/ui/button";
 export default function Settings() {
   return (
     <div className="flex flex-col gap-8 max-w-xl">
-      <h1 className="text-4xl sm:text-5xl font-bold text-center">Settings</h1>
+      <h1 className="text-4xl sm:text-5xl font-bold text-center">تنظیمات</h1>
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
           <Link href="/admin">
-            <Button>Administration</Button>
+            <Button>مدیریت</Button>
           </Link>
-          <p className="text-sm text-muted-foreground">Manage posts data.</p>
+          <p className="text-sm text-muted-foreground">مدیریت داده های پست ها</p>
         </div>
         <div className="flex flex-col gap-2">
           <CachePostsButton />
           <p className="text-sm text-muted-foreground">
-            Cache posts after editing a post manually in VS Code or other text
-            editor. Caching will update the blog roll and search capabilities.
+          پست‌های حافظه پنهان پس از ویرایش دستی یک پست در VS Code یا سایر ویرایشگرهای متنی ذخیره می‌شوند. ذخیره‌سازی در حافظه پنهان، فهرست وبلاگ و قابلیت‌های جستجو را به‌روزرسانی می‌کند.
           </p>
         </div>
         <div className="flex flex-col gap-2">
           <OpenCategoriesInVSCode />
           <p className="text-sm text-muted-foreground">
-            Categories are stored in a JSON config file. This button will open
-            that file in VS Code for editing.
+          دسته ها در یک فایل پیکربندی JSON ذخیره می شوند. این دکمه آن فایل را در VS Code برای ویرایش باز می کند.
           </p>
         </div>
       </div>
