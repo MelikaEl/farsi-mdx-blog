@@ -4,7 +4,7 @@ export default function Privacy() {
   return (
     <div className="flex flex-col gap-8 max-w-xl">
       <h1 className="text-4xl sm:text-5xl font-bold text-center">
-        Privacy Policy
+      سیاست حفظ حریم خصوصی
       </h1>
       <ReactMarkdown className="flex flex-col gap-6">
         {privacyContent}
@@ -15,27 +15,28 @@ export default function Privacy() {
 
 const privacyContent = `
 
-Effective Date: December 1, 2023
+## تاریخ موثر: ۱ دسامبر ۲۰۲۳
 
-Welcome to MDX Blog. Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website MDXBlog.io, including any other media form, media channel, mobile website, or mobile application related or connected thereto (collectively, the “Site”). Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.
+به وبلاگ MDX خوش آمدید. حریم خصوصی شما برای ما مهم است. این سیاست حفظ حریم خصوصی توضیح می‌دهد که چگونه اطلاعات شما را جمع‌آوری، استفاده، افشا و محافظت می‌کنیم هنگامی که از وب‌سایت ما MDXBlog.io بازدید می‌کنید، از جمله هر نوع رسانه دیگر، کانال رسانه‌ای، وب‌سایت موبایل، یا برنامه موبایلی که به آن مرتبط یا متصل است (که به‌طور جمعی به عنوان "سایت" شناخته می‌شود). لطفاً این سیاست حفظ حریم خصوصی را با دقت بخوانید. اگر با شرایط این سیاست حفظ حریم خصوصی موافق نیستید، لطفاً به سایت دسترسی نداشته باشید.
 
-**1. Collection of Your Information**
+**۱. جمع‌آوری اطلاعات شما**
 
-We may collect information about you in a variety of ways. The information we may collect on the Site includes:
+ما ممکن است اطلاعاتی درباره شما به روش‌های مختلف جمع‌آوری کنیم. اطلاعاتی که ممکن است در سایت جمع‌آوری کنیم شامل موارد زیر است:
 
-   *Personal Data:* Personally identifiable information, such as your name and email address, that you voluntarily give to us when you choose to participate in various activities related to the Site. You are under no obligation to provide us with personal information of any kind, however, your refusal to do so may prevent you from using certain features of the Site.
+   *داده‌های شخصی:* اطلاعات شناسایی شخصی، مانند نام و آدرس ایمیل شما، که به‌طور داوطلبانه به ما می‌دهید هنگامی که تصمیم می‌گیرید در فعالیت‌های مختلف مرتبط با سایت شرکت کنید. شما هیچ الزامی برای ارائه اطلاعات شخصی از هر نوع به ما ندارید، اما امتناع شما از انجام این کار ممکن است مانع استفاده شما از برخی ویژگی‌های سایت شود.
 
-**2. Disclosure of Your Information**
+**۲. افشای اطلاعات شما**
 
-We may share information we have collected about you in certain situations. Your information may be disclosed as follows:
+ما ممکن است اطلاعاتی که درباره شما جمع‌آوری کرده‌ایم را در شرایط خاصی به اشتراک بگذاریم. اطلاعات شما ممکن است به شرح زیر افشا شود:
 
-   *By Law or to Protect Rights:* If we believe the release of information about you is necessary to respond to legal process, to investigate or remedy potential violations of our policies, or to protect the rights, property, and safety of others, we may share your information as permitted or required by any applicable law, rule, or regulation.
+   *براساس قانون یا برای حفاظت از حقوق:* اگر ما معتقد باشیم که افشای اطلاعات درباره شما برای پاسخ به فرآیند قانونی ضروری است، برای بررسی یا جبران نقض‌های احتمالی سیاست‌های ما، یا برای حفاظت از حقوق، اموال و ایمنی دیگران، ممکن است اطلاعات شما را به‌طور مجاز یا مورد نیاز توسط هر قانون، قاعده یا مقررات قابل اجرا به اشتراک بگذاریم.
 
-**3. Security of Your Information**
+**۳. امنیت اطلاعات شما**
 
-We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable, and no method of data transmission can be guaranteed against any interception or other type of misuse.
+ما از اقدامات امنیتی اداری، فنی و فیزیکی برای کمک به حفاظت از اطلاعات شخصی شما استفاده می‌کنیم. در حالی که ما اقدامات معقولی برای ایمن‌سازی اطلاعات شخصی که به ما ارائه می‌دهید انجام داده‌ایم، لطفاً آگاه باشید که علی‌رغم تلاش‌های ما، هیچ اقدام امنیتی کامل یا غیرقابل نفوذ نیست و هیچ روش انتقال داده‌ای نمی‌تواند در برابر هر نوع رهگیری یا سوءاستفاده دیگری تضمین شود.
 
-**4. Contact Us**
+**۴. تماس با ما**
 
-If you have questions or comments about this Privacy Policy, please contact us at: owolfdev@gmail.com.
+اگر سوالات یا نظراتی درباره این سیاست حفظ حریم خصوصی دارید، لطفاً با ما تماس بگیرید: owolfdev@gmail.com.
+
 `;
