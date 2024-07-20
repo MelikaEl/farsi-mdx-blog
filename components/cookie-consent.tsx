@@ -15,12 +15,11 @@ function CookieConsentComponent() {
         buttonStyle={{ color: "#4e503b", background: "#fff", fontSize: "13px" }}
         expires={150} // This is in days. You can adjust as needed.
       >
-        This web app may use cookies to enhance the user experience.{" "}
+        "این برنامه وب ممکن است از کوکی‌ها برای بهبود تجربه کاربری استفاده کند{" "}
         <span style={{ fontSize: "10px" }}>
-          We do not share, sell, rent, or trade your personal information with
-          any third parties. For more information, please see our{" "}
+        "ما اطلاعات شخصی شما را با هیچ شخص ثالثی به اشتراک نمی‌گذاریم، نمی‌فروشیم، اجاره نمی‌دهیم یا معامله نمی‌کنیم. برای اطلاعات بیشتر، لطفاً اینجا را ببینید{" "}
           <Link className="font-bold" href="/privacy">
-            privacy policy.
+          سیاست حفظ حریم خصوصی
           </Link>
         </span>
       </CookieConsent>
