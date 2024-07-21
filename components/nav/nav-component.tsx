@@ -15,6 +15,9 @@ import { Span } from "next/dist/trace";
 import BlogButton from "@/components/nav/blog-button";
 
 const NavComponent: React.FC = () => {
+
+const direction= "rtl" ;
+
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -69,8 +72,14 @@ const NavComponent: React.FC = () => {
       {/* Mobile Side Menu */}
       <div
         ref={menuRef}
-        className={`text-xl h-screen w-1/2 shadow-xl absolute top-0 left-0  bg-white dark:bg-background z-50 transform ${
-          isMenuOpen ? "translate-x-0" : "-translate-x-full"
+        className={`text-xl h-screen w-1/2 shadow-xl absolute top-0 ${
+          direction === 'rtl' ? 'right-0' : 'left-0'
+        } bg-white dark:bg-background z-50 transform ${
+          isMenuOpen
+            ? 'translate-x-0'
+            : direction === 'rtl'
+            ? 'translate-x-full'
+            : '-translate-x-full'
         } transition-transform duration-300 ease-in-out flex flex-col gap-6 px-12 py-8 sm:hidden`}
       >
         <Link href="/" onClick={closeMenu}>
