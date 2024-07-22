@@ -28,12 +28,12 @@ const BlogPostList = ({ blogs, trimDescription }: BlogPostListProps) => {
           className="border px-3 py-2 rounded-xl cursor-pointer"
         >
           <LoaderLink isButton={false} url={`/blog/${blog.slug}`}>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 max-w-sm">
               <div>
                 <h3 className="text-2xl font-bold">{blog.title}</h3>
                 <div className="text-sm">{blog.formattedDate}</div>
               </div>
-              <div title={blog.description}>
+              <div title={blog.description} className="truncate">
                 {trimDescription(blog.description)}
               </div>
             </div>

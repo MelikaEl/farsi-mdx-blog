@@ -66,10 +66,10 @@ const Blog = async ({
   }
 
   return (
-    <div className="flex flex-col gap-8 pb-6 sm:w-xl max-w-xl sm:max-w-2xl">
+    <div className="flex w-full flex-col gap-8 pb-6 sm:w-xl max-w-xl sm:max-w-2xl mx-auto">
       {/* <h1 className="text-4xl sm:text-5xl font-bold text-center">Blog</h1> */}
 
-      <div className="flex gap-4 justify-between items-center">
+      <div className="flex gap-4 justify-between items-center ">
         <SearchPosts
           currentPage={currentPage}
           limit={postsPerPage}

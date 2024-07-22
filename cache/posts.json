@@ -20,6 +20,24 @@
     "path": "a-first-post.mdx"
   },
   {
+    "slug": "ddddddddddd",
+    "id": "f4394afe-0041-4aa1-98d0-b13bf203b089",
+    "type": "blog",
+    "author": "ففففف",
+    "title": "ddddddddddd",
+    "date": "2024-07-21",
+    "description": "اااااااااااااااااااااااااااااااااااااااا",
+    "categories": [
+      "توسعه وب",
+      "بهره وری"
+    ],
+    "tags": [
+      "اتاتا، لالالا"
+    ],
+    "image": "/images/default.jpg",
+    "path": "ddddddddddd.mdx"
+  },
+  {
     "slug": "second-post",
     "id": "24a25f0d-a708-47f2-b31f-50c798570cbc",
     "type": "وبلاگ",
@@ -37,6 +55,25 @@
       "اچ‌تی‌ام‌ال"
     ],
     "image": "/images/default.jpg",
-    "path": "second-post.mdx"
+    "path": "اولین-پست.mdx"
+  },
+
+  {
+    "slug": "تائالتالتغلغب8675",
+    "id": "e9e952e0-64af-457d-9ce2-5732c37cd579",
+    "type": "blog",
+    "author": "تاتلناباتفبافب",
+    "title": "تائالتالتغلغب8675",
+    "date": "2024-07-21",
+    "description": "تاتلناباتفبافبتاتلناباتفبافبتاتلناباتفبافب",
+    "categories": [
+      "توسعه وب",
+      "صنعت"
+    ],
+    "tags": [
+      "اتاتا، لالالا"
+    ],
+    "image": "/images/default.jpg",
+    "path": "تائالتالتغلغب8675.mdx"
   }
 ]

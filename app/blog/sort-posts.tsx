@@ -68,13 +68,13 @@ function SortPosts({
   const direction = "rtl" ;
 
   return (
-    <div className="w-1/2 sm:w-1/3 flex gap-2 items-center">
+    <div className="w-1/2 sm:w-1/3 flex gap-2 items-center ">
       {sortOrder === "asc" ? (
         <ChevronUp className="cursor-pointer" onClick={toggleSortOrder} />
       ) : (
         <ChevronDown className="cursor-pointer" onClick={toggleSortOrder} />
       )}
-      <div className="text-slate-400 w-full">
+      <div className="text-slate-400 w-full ">
         <Select value={sortBy} onValueChange={handleChangeSort}>
           <SelectTrigger className="">
             <SelectValue placeholder="Sort By" />
@@ -89,7 +89,7 @@ function SortPosts({
             }}
           >
             <SelectItem value="date">
-              <span className="sm:text-sm text-lg">تاریخ</span>
+              <span className="sm:text-sm text-lg ">تاریخ</span>
             </SelectItem>
             <SelectItem value="title">
               <span className="sm:text-sm text-lg">عنوان</span>
