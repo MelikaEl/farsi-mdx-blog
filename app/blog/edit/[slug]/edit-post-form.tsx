@@ -223,15 +223,22 @@ export function EditPostForm({ postData }: { postData: any }) {
             name="date"
             render={({ field }) => (
               <FormItem className="flex flex-col">
-                <FormLabel className="font-semibold text-md">تاریخ</FormLabel>
+                <FormLabel className="font-semibold text-md">تاریخ انتشار</FormLabel>
                 <div style={{ direction: "rtl" }}>
                 <DatePicker
+                  inputClass="custom-input"
                   calendar={persian}
                   locale={persian_fa}
                   calendarPosition="bottom-right"
+                  style={{
+                    height: "40px",
+                    borderRadius: "8px",
+                    fontSize: "14px",
+                    padding: "3px 10px"
+                  }}
+                  
                 />
               </div>
-                
                 
                 
                 {/*<DatePickerField field={field} />*/}
