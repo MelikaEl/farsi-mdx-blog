@@ -53,6 +53,8 @@ import { MultiSelect } from "@/components/rs-multi-select";
 
 import { useRouter } from "next/navigation";
 
+import "react-multi-date-picker/styles/colors/green.css"
+
 const formSchema = z.object({
   date: z.date(), // Make dob optional
   type: z.string().optional(),
@@ -171,10 +173,13 @@ export function CreatePostForm() {
           name="date"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <FormLabel className="font-semibold text-md">تاریخ انتشار</FormLabel>
+              <FormLabel className="font-semibold text-md">
+                تاریخ انتشار
+              </FormLabel>
 
               <div style={{ direction: "rtl" }}>
                 <DatePicker
+                  className="green"
                   inputClass="custom-input"
                   calendar={persian}
                   locale={persian_fa}
@@ -183,12 +188,11 @@ export function CreatePostForm() {
                     height: "40px",
                     borderRadius: "8px",
                     fontSize: "14px",
-                    padding: "3px 10px"
+                    padding: "3px 10px",
                   }}
-                  
                 />
               </div>
-              
+
               {/*<DatePickerField field={field} />*/}
 
               {/*<DatePicker />*/}
