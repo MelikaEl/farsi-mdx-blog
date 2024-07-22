@@ -28,7 +28,7 @@ export default function Home() {
         </Link>
       </div>
       <p>
-      برای رفتن به مخزن github MDXBlog روی دکمه بالا کلیک کنید ☝️. دستورالعمل نصب در{" "}
+      برای رفتن به github MDXBlog repository روی دکمه بالا کلیک کنید ☝️. دستورالعمل نصب در{" "}
         <Link
           target="_blank"
           href="https://github.com/owolfdev/mdx-blog/blob/main/README.md"
