@@ -3,9 +3,7 @@ import { EditPostForm } from "./edit-post-form";
 import { getPost } from "@/lib/posts-utils.mjs";
 
 async function EditBlog({ params }: { params: { slug: string } }) {
-  const decodedSlug = decodeURIComponent(params.slug);
-  const postData = await getPost({ slug: decodedSlug });
-
+  const postData = await getPost(params);
   return (
     <div className="w-full max-w-xl">
       <div className="flex flex-col gap-10">
