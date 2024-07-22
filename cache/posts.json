@@ -26,7 +26,7 @@
     "author": "ففففف",
     "title": "ddddddddddd",
     "date": "2024-07-21",
-    "description": "اااااااااااااااااااااااااااااااااااااااا",
+    "description": "ااااااااااااااااااااااااااااااا",
     "categories": [
       "توسعه وب",
       "بهره وری"
@@ -36,6 +36,23 @@
     ],
     "image": "/images/default.jpg",
     "path": "ddddddddddd.mdx"
+  },
+  {
+    "slug": "dsfs",
+    "id": "dff0275d-03e3-49be-805c-617c86e9f926",
+    "type": "blog",
+    "author": "sdfdsfds",
+    "title": "dsfs",
+    "date": "2024-07-22",
+    "description": "dsfsdfdsfdsdsfsdfdsfdsdsfsdfdsfdsdsfsdfdsfdsdsfsdfdsfds",
+    "categories": [
+      "توسعه وب"
+    ],
+    "tags": [
+      null
+    ],
+    "image": "/images/default.jpg",
+    "path": "dsfs.mdx"
   },
   {
     "slug": "second-post",
@@ -57,7 +74,25 @@
     "image": "/images/default.jpg",
     "path": "اولین-پست.mdx"
   },
-
+  {
+    "slug": "اتنبلابا",
+    "id": "adf24721-3d52-4825-9414-5fc7911b93bd",
+    "type": "blog",
+    "author": "الالالالا",
+    "title": "اتنبلابا",
+    "date": "2024-07-22",
+    "description": "لالالالالالالبسیسیسیسیس",
+    "categories": [
+      "توسعه وب",
+      "صنعت",
+      "بهره وری"
+    ],
+    "tags": [
+      null
+    ],
+    "image": "/images/default.jpg",
+    "path": "اتنبلابا.mdx"
+  },
   {
     "slug": "تائالتالتغلغب8675",
     "id": "e9e952e0-64af-457d-9ce2-5732c37cd579",
