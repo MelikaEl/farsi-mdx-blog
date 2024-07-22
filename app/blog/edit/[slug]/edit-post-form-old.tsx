@@ -6,11 +6,15 @@ import { parseISO } from "date-fns";
 
 import { useRouter } from "next/navigation";
 
+
+
 //import DatePickerField from "@/components/date-picker";
 
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
+
+
 
 import { format } from "date-fns";
 
@@ -60,8 +64,6 @@ import {
 
 import { MultiSelect } from "@/components/rs-multi-select";
 
-import "react-multi-date-picker/styles/colors/green.css"
-
 const formSchema = z.object({
   date: z.date(),
   type: z.string().optional(),
@@ -77,8 +79,10 @@ const formSchema = z.object({
   categories: z.array(z.string()).nonempty(),
   tags: z.string().optional(),
 });
+
 export function EditPostForm({ postData }: { postData: any }) {
   const [selectedValue, setSelectedValue] = useState("blog");
+
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -98,10 +102,15 @@ export function EditPostForm({ postData }: { postData: any }) {
     },
   });
 
+  // Retrieve user information
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const endpoint = "/api/edit-file-locally";
+    // Endpoint URL where you want to send the POST request
+    const endpoint = "/api/edit-file-locally"; // Replace with your actual API route
+
     const formattedDate = values.date ? format(values.date, "yyyy-MM-dd") : "";
 
+    // Add the author data to the submission values
     const submissionData = {
       ...values,
       author: postData.frontMatter.author,
@@ -126,15 +135,19 @@ export function EditPostForm({ postData }: { postData: any }) {
       const result = await response.json();
       console.log("Success:", result);
 
+      // Reset the form here
       form.reset();
 
-      const encodedSlug = encodeURIComponent(
-        postData.frontMatter.path.replace(/\.mdx$/, "")
-      );
-      router.push(`/blog/${encodedSlug}`);
+      const slug = postData.frontMatter.path.replace(/\.mdx$/, "");
+
+      //redirect to the post page
+      router.push(`/blog/${slug}`);
       router.refresh();
+
+      // Handle success scenario (e.g., show a success message, redirect, etc.)
     } catch (error) {
       console.error("Error:", error);
+      // Handle error scenario (e.g., show an error message)
     }
   }
 
@@ -171,7 +184,8 @@ export function EditPostForm({ postData }: { postData: any }) {
     console.log("delete post");
   };
 
-  const direction = "rtl";
+
+  const direction = "rtl" ;
 
   return (
     <>
@@ -203,27 +217,37 @@ export function EditPostForm({ postData }: { postData: any }) {
               </FormItem>
             )}
           />
+          {/* date */}
           <FormField
             control={form.control}
             name="date"
             render={({ field }) => (
               <FormItem className="flex flex-col">
-                <FormLabel className="font-semibold text-md">تاریخ</FormLabel>
+                <FormLabel className="font-semibold text-md">تاریخ انتشار</FormLabel>
                 <div style={{ direction: "rtl" }}>
-                  <DatePicker
-                    className="green"
-                    inputClass="custom-input"
-                    calendar={persian}
-                    locale={persian_fa}
-                    calendarPosition="bottom-right"
-                    style={{
-                      height: "40px",
-                      borderRadius: "8px",
-                      fontSize: "14px",
-                      padding: "3px 10px",
-                    }}
-                  />
-                </div>
+                <DatePicker
+                  inputClass="custom-input"
+                  calendar={persian}
+                  locale={persian_fa}
+                  calendarPosition="bottom-right"
+                  style={{
+                    height: "40px",
+                    borderRadius: "8px",
+                    fontSize: "14px",
+                    padding: "3px 10px"
+                  }}
+                  
+                />
+              </div>
+                
+                
+                {/*<DatePickerField field={field} />*/}
+
+
+
+                {/* <FormDescription>
+                Your date of birth is used to calculate your age.
+              </FormDescription> */}
                 <FormMessage />
               </FormItem>
             )}
@@ -272,6 +296,7 @@ export function EditPostForm({ postData }: { postData: any }) {
               </FormItem>
             )}
           />
+          {/* categories - multi-select */}
           <FormField
             control={form.control}
             name="categories"
@@ -307,31 +332,36 @@ export function EditPostForm({ postData }: { postData: any }) {
           <div className="flex gap-3">
             <Button type="submit">ذخیره ویرایش ها</Button>
             <Button type="button" onClick={handleOpenInVSCode}>
-              فایل را در VS Code باز کنید
+            فایل را در VS Code باز کنید
             </Button>
           </div>
         </form>
       </Form>
-      <Dialog>
+      {/* <CachePostsButton /> */}
+      <Dialog >
         <DialogTrigger asChild>
           <div>
-            <Button variant="destructive" type="button">
+            <Button
+              variant="destructive"
+              type="button"
+              // onClick={handleDeletePost}
+            >
               حذف پست
             </Button>
           </div>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>حذف پست</DialogTitle>
-            <DialogDescription>
-              آیا مطمئن هستید که می خواهید پست فعلی را حذف کنید؟
+        <DialogContent className="sm:max-w-[425px]" >
+          <DialogHeader >
+            <DialogTitle >حذف پست</DialogTitle>
+            <DialogDescription >
+            آیا مطمئن هستید که می خواهید پست فعلی را حذف کنید؟
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4"></div>
           <DialogFooter>
             <div className="w-full flex gap-4">
               <Button variant="destructive" onClick={handleDeletePost}>
-                حذف پست
+              حذف پست
               </Button>
               <DialogClose className="bg-gray-300 text-black px-4 py-2 rounded">
                 <span className="text-sm">انصراف</span>
@@ -340,6 +370,8 @@ export function EditPostForm({ postData }: { postData: any }) {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* <div>{JSON.stringify(postData.frontMatter)}</div> */}
     </>
   );
 }
