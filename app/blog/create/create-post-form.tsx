@@ -54,6 +54,8 @@ import { MultiSelect } from "@/components/rs-multi-select";
 import { useRouter } from "next/navigation";
 
 import "react-multi-date-picker/styles/colors/green.css"
+import "react-multi-date-picker/styles/backgrounds/bg-dark.css"
+import { useTheme } from "next-themes";
 
 const formSchema = z.object({
   date: z.date(), // Make dob optional
@@ -92,7 +94,7 @@ export function CreatePostForm() {
 
   // const { user } = useUser(); // Retrieve user information
   const authorName = "O Wolfson"; // Replace 'fullName' with the appropriate field
-
+  //const { theme } = useTheme();
   const router = useRouter();
 
   // useEffect(() => {
@@ -140,6 +142,7 @@ export function CreatePostForm() {
   }
 
   const direction = "rtl";
+  const { theme } = useTheme();
 
   return (
     <Form {...form}>
@@ -177,10 +180,11 @@ export function CreatePostForm() {
                 تاریخ انتشار
               </FormLabel>
 
-              <div style={{ direction: "rtl" }}>
+              <div  style={{ direction: "rtl" }} >
                 <DatePicker
-                  className="green"
-                  inputClass="custom-input"
+                  // className="bg-dark"
+                 className= {theme === 'dark' ? 'bg-dark , green': 'green'} 
+                  inputClass={theme === 'dark' ? 'dark-custom-input': 'custom-input'}
                   calendar={persian}
                   locale={persian_fa}
                   calendarPosition="bottom-right"
