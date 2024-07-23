@@ -61,6 +61,8 @@ import {
 import { MultiSelect } from "@/components/rs-multi-select";
 
 import "react-multi-date-picker/styles/colors/green.css"
+import "react-multi-date-picker/styles/backgrounds/bg-dark.css"
+import { useTheme } from "next-themes";
 
 const formSchema = z.object({
   date: z.date(),
@@ -172,6 +174,8 @@ export function EditPostForm({ postData }: { postData: any }) {
   };
 
   const direction = "rtl";
+  const { theme } = useTheme();
+
 
   return (
     <>
@@ -209,21 +213,22 @@ export function EditPostForm({ postData }: { postData: any }) {
             render={({ field }) => (
               <FormItem className="flex flex-col">
                 <FormLabel className="font-semibold text-md">تاریخ</FormLabel>
-                <div style={{ direction: "rtl" }}>
-                  <DatePicker
-                    className="green"
-                    inputClass="custom-input"
-                    calendar={persian}
-                    locale={persian_fa}
-                    calendarPosition="bottom-right"
-                    style={{
-                      height: "40px",
-                      borderRadius: "8px",
-                      fontSize: "14px",
-                      padding: "3px 10px",
-                    }}
-                  />
-                </div>
+                <div  style={{ direction: "rtl" }} >
+                <DatePicker
+                  // className="bg-dark"
+                 className= {theme === 'dark' ? 'bg-dark , green': 'green'} 
+                  inputClass={theme === 'dark' ? 'dark-custom-input': 'custom-input'}
+                  calendar={persian}
+                  locale={persian_fa}
+                  calendarPosition="bottom-right"
+                  style={{
+                    height: "40px",
+                    borderRadius: "8px",
+                    fontSize: "14px",
+                    padding: "3px 10px",
+                  }}
+                />
+              </div>
                 <FormMessage />
               </FormItem>
             )}
