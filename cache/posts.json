@@ -20,41 +20,6 @@
     "path": "a-first-post.mdx"
   },
   {
-    "slug": "ddddddddddd",
-    "id": "f4394afe-0041-4aa1-98d0-b13bf203b089",
-    "type": "blog",
-    "author": "ففففف",
-    "title": "ddddddddddd",
-    "date": "2024-07-21",
-    "description": "ااااااااااااااااااااااااااااااا",
-    "categories": [
-      "توسعه وب",
-      "بهره وری"
-    ],
-    "tags": [
-      "اتاتا، لالالا"
-    ],
-    "image": "/images/default.jpg",
-    "path": "ddddddddddd.mdx"
-  },
-  {
-    "slug": "dsfs",
-    "id": "dff0275d-03e3-49be-805c-617c86e9f926",
-    "type": "blog",
-    "author": "sdfdsfds",
-    "title": "dsfs",
-    "date": "2024-07-22",
-    "description": "dsfsdfdsfdsdsfsdfdsfdsdsfsdfdsfdsdsfsdfdsfdsdsfsdfdsfds",
-    "categories": [
-      "توسعه وب"
-    ],
-    "tags": [
-      null
-    ],
-    "image": "/images/default.jpg",
-    "path": "dsfs.mdx"
-  },
-  {
     "slug": "second-post",
     "id": "24a25f0d-a708-47f2-b31f-50c798570cbc",
     "type": "وبلاگ",
@@ -75,40 +40,23 @@
     "path": "اولین-پست.mdx"
   },
   {
-    "slug": "اتنبلابا",
-    "id": "adf24721-3d52-4825-9414-5fc7911b93bd",
-    "type": "blog",
-    "author": "الالالالا",
-    "title": "اتنبلابا",
-    "date": "2024-07-22",
-    "description": "لالالالالالالبسیسیسیسیس",
+    "slug": "first-travel-post",
+    "id": "94a25f0d-a708-47f2-b31f-50c798570cbn",
+    "type": "وبلاگ",
+    "author": "ملیکا اعلامی",
+    "title": "اولین پست",
+    "date": "1403/05/2",
+    "description": " در این وبلاگ مکان های دیدنی اصفهان را معرفی می کنیم ",
     "categories": [
-      "توسعه وب",
-      "صنعت",
-      "بهره وری"
+      "پروژه"
     ],
     "tags": [
-      null
+      "ری‌اکت",
+      "جاوااسکریپت",
+      "mdx",
+      "اچ‌تی‌ام‌ال"
     ],
-    "image": "/images/default.jpg",
-    "path": "اتنبلابا.mdx"
-  },
-  {
-    "slug": "تائالتالتغلغب8675",
-    "id": "e9e952e0-64af-457d-9ce2-5732c37cd579",
-    "type": "blog",
-    "author": "تاتلناباتفبافب",
-    "title": "تائالتالتغلغب8675",
-    "date": "2024-07-21",
-    "description": "تاتلناباتفبافبتاتلناباتفبافبتاتلناباتفبافب",
-    "categories": [
-      "توسعه وب",
-      "صنعت"
-    ],
-    "tags": [
-      "اتاتا، لالالا"
-    ],
-    "image": "/images/default.jpg",
-    "path": "تائالتالتغلغب8675.mdx"
+    "image": "/images/esfehan1.jpg",
+    "path": "first-travel-post.mdx"
   }
 ]
