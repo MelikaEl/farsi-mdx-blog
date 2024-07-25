@@ -12,9 +12,12 @@ export default function Loading() {
     return () => clearTimeout(timer); // Clean up the timer
   }, []);
 
+
+const direction = "ltr"
+
   if (isLoading) {
     return (
-      <main className="text-center">
+      <main className="text-center" dir={direction}>
         <div className="fixed top-0 left-0 bg-white dark:bg-[#010816] flex justify-center items-center w-full h-screen z-10">
           <span className="animated-text text-4xl font-bold letter-spacing-0">
             <span className="letter">A</span>
