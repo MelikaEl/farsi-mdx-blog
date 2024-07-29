@@ -86,6 +86,7 @@ export const columns: ColumnDef<Post>[] = [
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
         aria-label="Select row"
+        className="mr-5"
       />
     ),
     enableSorting: false,
@@ -106,15 +107,14 @@ export const columns: ColumnDef<Post>[] = [
       );
     },
     cell: ({ row }) => {
-
-      const gregorianDate = new Date(row.getValue("date"));//new Date(post.date) acts as a crucial intermediary step, converting potentially varied date string formats from your MDX files into a standardized JavaScript Date object. This standardization is essential for the accurate and consistent conversion to the Persian calendar system in the subsequent steps of your code.
+      const gregorianDate = new Date(row.getValue("date")); //new Date(post.date) acts as a crucial intermediary step, converting potentially varied date string formats from your MDX files into a standardized JavaScript Date object. This standardization is essential for the accurate and consistent conversion to the Persian calendar system in the subsequent steps of your code.
       const persianDate = new DateObject({
         date: gregorianDate,
         calendar: persian,
         locale: persian_fa,
       });
-  
-      const formattedDate = `${persianDate.format("DD MMMM YYYY")}`;//YYYY-MM-DD
+
+      const formattedDate = `${persianDate.format("DD MMMM YYYY")}`; //YYYY-MM-DD
       return <div>{formattedDate}</div>;
 
       // // Parse the date from the row
@@ -213,7 +213,7 @@ export const columns: ColumnDef<Post>[] = [
     cell: ({ row }) => {
       const post = row.original;
 
-      const direction = "rtl" ;
+      const direction = "rtl";
 
       return (
         <DropdownMenu dir={direction}>
@@ -321,26 +321,26 @@ export function DataTable() {
     },
   });
 
-  const direction = "rtl" ;
-// Define a type for the column IDs
-type ColumnId = 'date' | 'type' | 'title' | 'status';
+  const direction = "rtl";
+  // Define a type for the column IDs
+  type ColumnId = "date" | "type" | "title" | "status";
 
-// Mapping of English column IDs to Persian names
-const columnNameMapping: Record<ColumnId, string> = {
-  date: 'تاریخ',
-  type: 'نوع',
-  title: 'عنوان',
-  status: 'وضعیت'
-};
+  // Mapping of English column IDs to Persian names
+  const columnNameMapping: Record<ColumnId, string> = {
+    date: "تاریخ",
+    type: "نوع",
+    title: "عنوان",
+    status: "وضعیت",
+  };
 
-// Type guard to check if a value is a key of ColumnId
-const isColumnId = (value: string): value is ColumnId => {
-  return Object.keys(columnNameMapping).includes(value.toLowerCase());
-};
+  // Type guard to check if a value is a key of ColumnId
+  const isColumnId = (value: string): value is ColumnId => {
+    return Object.keys(columnNameMapping).includes(value.toLowerCase());
+  };
 
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
+      <div className="flex items-center py-4 " style={{ gap: "16px" }}>
         <Input
           placeholder="جستجوی پست ها..."
           // Use a global filter value from the table state
@@ -363,10 +363,12 @@ const isColumnId = (value: string): value is ColumnId => {
               .filter((column) => column.getCanHide())
               .map((column) => {
                 const columnKey = column.id.toLowerCase();
-                const persianName = isColumnId(columnKey) ? columnNameMapping[columnKey as ColumnId] : column.id;
+                const persianName = isColumnId(columnKey)
+                  ? columnNameMapping[columnKey as ColumnId]
+                  : column.id;
                 return (
                   <DropdownMenuCheckboxItem
-                  dir={direction}
+                    dir={direction}
                     key={column.id}
                     className="capitalize"
                     checked={column.getIsVisible()}
@@ -377,7 +379,6 @@ const isColumnId = (value: string): value is ColumnId => {
                     {persianName}
                   </DropdownMenuCheckboxItem>
                 );
-               
               })}
           </DropdownMenuContent>
         </DropdownMenu>
@@ -437,7 +438,8 @@ const isColumnId = (value: string): value is ColumnId => {
           {table.getFilteredSelectedRowModel().rows.length} از{" "}
           {table.getFilteredRowModel().rows.length} ردیف(ها) انتخاب شده است.
         </div>
-        <div className="space-x-2">
+        {/*<div className="space-x-2">*/}
+        <div style={{ display: "flex", gap: "16px" }}>
           <Button
             variant="outline"
             size="sm"
@@ -459,12 +461,6 @@ const isColumnId = (value: string): value is ColumnId => {
     </div>
   );
 }
-
-
-
-
-
-
 
 // "use client";
 
@@ -889,17 +885,6 @@ const isColumnId = (value: string): value is ColumnId => {
 //     </div>
 //   );
 // }
-
-
-
-
-
-
-
-
-
-
-
 
 // "use client";
 
@@ -1329,9 +1314,3 @@ const isColumnId = (value: string): value is ColumnId => {
 //     </div>
 //   );
 // }
-
-
-
-
-
-
