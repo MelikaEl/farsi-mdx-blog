@@ -10,7 +10,7 @@ import { generatePostsCache } from "@/lib/posts-utils.mjs";
 //import persian from "react-date-object/calendars/persian";
 //import persian_fa from "react-date-object/locales/persian_fa";
 
-import DatePicker from "react-multi-date-picker";
+import DatePicker, { DateObject } from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 
@@ -53,8 +53,8 @@ import { MultiSelect } from "@/components/rs-multi-select";
 
 import { useRouter } from "next/navigation";
 
-import "react-multi-date-picker/styles/colors/green.css"
-import "react-multi-date-picker/styles/backgrounds/bg-dark.css"
+import "react-multi-date-picker/styles/colors/green.css";
+import "react-multi-date-picker/styles/backgrounds/bg-dark.css";
 import { useTheme } from "next-themes";
 
 const formSchema = z.object({
@@ -77,6 +77,8 @@ const formSchema = z.object({
 });
 
 export function CreatePostForm() {
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+
   const [selectedValue, setSelectedValue] = useState("blog");
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -180,11 +182,19 @@ export function CreatePostForm() {
                 تاریخ انتشار
               </FormLabel>
 
-              <div  style={{ direction: "rtl" }} >
+              <div style={{ direction: "rtl" }}>
                 <DatePicker
+                  value={selectedDate}
+                  onChange={(date: DateObject | null) => {
+                    const newDate = date ? date.toDate() : null;
+                    setSelectedDate(newDate);
+                    field.onChange(newDate);
+                  }}
                   // className="bg-dark"
-                 className= {theme === 'dark' ? 'bg-dark , green': 'green'} 
-                  inputClass={theme === 'dark' ? 'dark-custom-input': 'custom-input'}
+                  className={theme === "dark" ? "bg-dark , green" : "green"}
+                  inputClass={
+                    theme === "dark" ? "dark-custom-input" : "custom-input"
+                  }
                   calendar={persian}
                   locale={persian_fa}
                   calendarPosition="bottom-right"
