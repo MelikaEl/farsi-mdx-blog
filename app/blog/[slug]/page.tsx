@@ -102,7 +102,7 @@ export default async function BlogPage({
       <div className="mb-2">
         <h1 className="text-5xl font-bold mb-2">{props.frontMatter.title}</h1>
         <div>{formattedPersianDate}</div>
-        <div>By: {props.frontMatter.author}</div>
+        <div>توسط: {props.frontMatter.author}</div>
       </div>
       {isDevMode() && (
         <div className="flex gap-2 mb-4">
