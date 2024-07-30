@@ -27,9 +27,7 @@ import localFont from 'next/font/local'
 const myFont = localFont({
   src: [
     {
-      path: './Vazir-Bold.woff2',
-      weight: '400',
-      style: 'normal',
+      path: './Vazir-Bold.woff2'
     },
     {
       path: './Vazir-Bold-FD-WOL.woff2'
