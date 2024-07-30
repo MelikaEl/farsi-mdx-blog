@@ -3,7 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 //import { Dosis } from "next/font/google";
-import {  Vazirmatn } from "next/font/google";
+
+//import {  Vazirmatn } from "next/font/google";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/nav/site-header";
@@ -11,11 +12,31 @@ import { Footer } from "@/components/nav/footer";
 
 import CookieConsentComponent from "@/components/cookie-consent";
 
+import localFont from 'next/font/local'
+
 //const inter = Inter({ subsets: ["latin"] });
 
 
 //const dosis = Dosis({ subsets: ["latin"] });
-const vazirmatn = Vazirmatn({ subsets: ["arabic"] });
+//const vazirmatn = Vazirmatn({ subsets: ["arabic"] });
+
+/*const myFont = localFont({
+  src: './Vazir-Bold.woff2'
+})*/
+
+const myFont = localFont({
+  src: [
+    {
+      path: './Vazir-Bold.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './Vazir-Bold-FD-WOL.woff2'
+    }
+  ],
+})
+
 
 export const metadata: Metadata = {
   title: "MDX Blog Basic",
@@ -32,11 +53,11 @@ export default function RootLayout({
 }) {
 
   const direction = "rtl" ;
-  const font = vazirmatn;
+ // const font = vazirmatn;
 
   return (
-    <html lang="en" dir={direction}>
-      <body className={font.className}>
+    <html lang="en" dir={direction} className={myFont.className}>
+      <body className={myFont.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
