@@ -72,8 +72,8 @@ const TableHead = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <th
     ref={ref}
-    className={cn(//change text-left className to text-right className because I use rtl direction for persian language and the items in my table header messed up
-      "h-12 px-4 text-right align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
+    className={cn(//change text-left className to text-right className because I use rtl direction for persian language and the items in my table header messed up and change the pr-0 for checkbox to pr-5 to have distance from the right of the checkbox fron the table
+      "h-12 px-4 text-right align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-5",
       className
     )}
     {...props}
