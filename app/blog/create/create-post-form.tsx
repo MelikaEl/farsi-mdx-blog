@@ -58,10 +58,11 @@ import "react-multi-date-picker/styles/backgrounds/bg-dark.css";
 import { useTheme } from "next-themes";
 
 import { Editor } from "react-draft-wysiwyg";
+import { EditorState } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "@/node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
-import dynamic from 'next/dynamic';//for SSR renndering in Editor component
+import dynamic from "next/dynamic"; //for SSR renndering in Editor component
 
 const formSchema = z.object({
   date: z.date(), // Make dob optional
@@ -152,9 +153,6 @@ export function CreatePostForm() {
   const direction = "rtl";
   const { theme } = useTheme();
 
-  
-
-
   //useref for Editor component in react-draft-wysiwyg. ref={setEditorReference} should be placed in Editor component.
   /*const editorRef = useRef<Editor | null>(null);
 
@@ -196,11 +194,23 @@ export function CreatePostForm() {
     focusEditor();
   }, []);*/
 
-//This approach ensures that the Editor component is only loaded and rendered in the browser, avoiding "window is not defined" errors in server-side environments. Server-Side Rendering (SSR) Challenges:When using React Draft Wysiwyg with frameworks that support server-side rendering (like Next.js), you may encounter "window is not defined" errors. This happens because the window object doesn't exist in a Node.js environment where the initial render occurs.Dynamic Import Solution:To overcome SSR issues, a common solution is to use dynamic imports. This ensures that the component is only loaded and rendered on the client side where the window object is available. To use React Draft Wysiwyg in SSR environments, you typically need to:Use dynamic imports to load the component only on the client side.Ensure that any code accessing window or browser-specific APIs is only executed in the browser environment.
+  //This approach ensures that the Editor component is only loaded and rendered in the browser, avoiding "window is not defined" errors in server-side environments. Server-Side Rendering (SSR) Challenges:When using React Draft Wysiwyg with frameworks that support server-side rendering (like Next.js), you may encounter "window is not defined" errors. This happens because the window object doesn't exist in a Node.js environment where the initial render occurs.Dynamic Import Solution:To overcome SSR issues, a common solution is to use dynamic imports. This ensures that the component is only loaded and rendered on the client side where the window object is available. To use React Draft Wysiwyg in SSR environments, you typically need to:Use dynamic imports to load the component only on the client side.Ensure that any code accessing window or browser-specific APIs is only executed in the browser environment.
   const Editor = dynamic(
-    () => import('react-draft-wysiwyg').then((mod) => mod.Editor),
+    () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
     { ssr: false }
   );
+
+  /* const [editorState, setEditorState] = useState(
+    () => EditorState.createEmpty()
+  );*/ // I add these states in my Editor component in my form
+
+  //Add placeholder to the Editor component of react-draft-wysiwyg. The placeholder prop accepts a string value, which will be displayed when the editor is empty.The placeholder text will disappear as soon as the user starts typing or adds any content to the editor.You can customize the appearance of the placeholder text using CSS. The placeholder has a class of public-DraftEditorPlaceholder-root.Make sure you've imported the necessary CSS file for react-draft-wysiwyg to ensure proper styling.By adding the placeholder prop, you provide users with a helpful prompt or instruction about what to enter in the editor, improving the user experience of your application.
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
+  useEffect(() => {
+    // This effect runs after the component has mounted. I add useEffect because this error (Warning: Can't call setState on a component that is not yet mounted. This is a no-op, but it might indicate a bug in your application. Instead, assign to `this.state` directly or define a `state = {};` class property with the desired state in the i component.) comes to my console.
+    setEditorState(EditorState.createEmpty());
+  }, []);
 
   return (
     <Form {...form}>
@@ -325,7 +335,11 @@ export function CreatePostForm() {
             <FormItem>
               <FormLabel>محتوا</FormLabel>
               <FormControl>
-                <Editor  />
+                <Editor
+                  editorState={editorState}
+                  onEditorStateChange={setEditorState}
+                  placeholder="Start typing your content here..."
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
