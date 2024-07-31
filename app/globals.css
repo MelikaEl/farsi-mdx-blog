@@ -266,6 +266,39 @@
 }
 
 
+/*.my-custom-editor .public-DraftEditorPlaceholder-root {
+  border: 2px solid #d7d7d7;
+  padding: 10px;
+  border-radius: 8px;
+}*/
+
+.editor-wrapper {
+  border: 1px solid #d7d7d7;
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.editor-wrapper:focus-within {
+  outline: none;
+  border: 3px solid #02070a; /* Increase border width and use solid color */
+  box-shadow: none; /* Remove the box-shadow on focus */
+  padding: 3px;
+}
+
+
+/* Target the internal structure to maintain border when content is added */
+.custom-editor-textarea .DraftEditor-root {
+  border: 1px solid #d7d7d7;
+  padding: 10px;
+  border-radius: 4px;
+  min-height: 200px;
+}
+
+.custom-editor-textarea .DraftEditor-root:focus-within {
+  border-color: #696c6e;
+  box-shadow: 0 0 0 0.2rem rgba(82, 83, 84, 0.25);
+  outline: none;
+}
 
 
 /*.custom-input {

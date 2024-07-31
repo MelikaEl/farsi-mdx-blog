@@ -339,6 +339,8 @@ export function CreatePostForm() {
                   editorState={editorState}
                   onEditorStateChange={setEditorState}
                   placeholder="Start typing your content here..."
+                  wrapperClassName="editor-wrapper"
+                  editorClassName="custom-editor-textarea"
                 />
               </FormControl>
               <FormMessage />
