@@ -57,6 +57,12 @@ import "react-multi-date-picker/styles/colors/green.css";
 import "react-multi-date-picker/styles/backgrounds/bg-dark.css";
 import { useTheme } from "next-themes";
 
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import "@/node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+
+import dynamic from 'next/dynamic';//for SSR renndering in Editor component
+
 const formSchema = z.object({
   date: z.date(), // Make dob optional
   type: z.string().optional(),
@@ -145,6 +151,56 @@ export function CreatePostForm() {
 
   const direction = "rtl";
   const { theme } = useTheme();
+
+  
+
+
+  //useref for Editor component in react-draft-wysiwyg. ref={setEditorReference} should be placed in Editor component.
+  /*const editorRef = useRef<Editor | null>(null);
+
+  const setEditorReference = (ref: Editor | null): void => {
+    editorRef.current = ref;
+  };
+
+  const focusEditor = () => {
+    if (editorRef.current) {
+      // Approach 1: Using getEditorRef() if available
+      const editor = (editorRef.current as any).getEditorRef?.();
+      if (editor && typeof editor.focus === "function") {
+        editor.focus();
+        return;
+      }
+
+      // Approach 2: Accessing the DOM element directly
+      const editorElement = (editorRef.current as any).editor;
+      if (editorElement && typeof editorElement.focus === "function") {
+        editorElement.focus();
+        return;
+      }
+
+      // Approach 3: Finding the contenteditable div
+      const editableElement = (
+        editorRef.current as any
+      ).editorContainer?.querySelector("[contenteditable=true]");
+      if (editableElement && typeof editableElement.focus === "function") {
+        editableElement.focus();
+        return;
+      }
+
+      console.warn("Unable to focus the editor");
+    }
+  };
+
+  // Example: Focus the editor when the component mounts
+  useEffect(() => {
+    focusEditor();
+  }, []);*/
+
+//This approach ensures that the Editor component is only loaded and rendered in the browser, avoiding "window is not defined" errors in server-side environments. Server-Side Rendering (SSR) Challenges:When using React Draft Wysiwyg with frameworks that support server-side rendering (like Next.js), you may encounter "window is not defined" errors. This happens because the window object doesn't exist in a Node.js environment where the initial render occurs.Dynamic Import Solution:To overcome SSR issues, a common solution is to use dynamic imports. This ensures that the component is only loaded and rendered on the client side where the window object is available. To use React Draft Wysiwyg in SSR environments, you typically need to:Use dynamic imports to load the component only on the client side.Ensure that any code accessing window or browser-specific APIs is only executed in the browser environment.
+  const Editor = dynamic(
+    () => import('react-draft-wysiwyg').then((mod) => mod.Editor),
+    { ssr: false }
+  );
 
   return (
     <Form {...form}>
@@ -261,6 +317,7 @@ export function CreatePostForm() {
             </FormItem>
           )}
         />
+
         <FormField
           control={form.control}
           name="content"
@@ -268,12 +325,7 @@ export function CreatePostForm() {
             <FormItem>
               <FormLabel>محتوا</FormLabel>
               <FormControl>
-                <Textarea
-                  id="content"
-                  className="h-[300px]"
-                  placeholder="محتوا"
-                  {...field}
-                />
+                <Editor  />
               </FormControl>
               <FormMessage />
             </FormItem>
