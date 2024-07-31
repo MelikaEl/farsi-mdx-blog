@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 
-import { generatePostsCache } from "@/lib/posts-utils.mjs";
+//import { generatePostsCache } from "@/lib/posts-utils.mjs";
 
 //import DatePickerField from "@/components/date-picker";
 
@@ -57,8 +57,8 @@ import "react-multi-date-picker/styles/colors/green.css";
 import "react-multi-date-picker/styles/backgrounds/bg-dark.css";
 import { useTheme } from "next-themes";
 
-import { Editor } from "react-draft-wysiwyg";
-import { EditorState } from "draft-js";
+//import { Editor } from "react-draft-wysiwyg";
+//import { EditorState } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "@/node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
@@ -205,12 +205,21 @@ export function CreatePostForm() {
   );*/ // I add these states in my Editor component in my form
 
   //Add placeholder to the Editor component of react-draft-wysiwyg. The placeholder prop accepts a string value, which will be displayed when the editor is empty.The placeholder text will disappear as soon as the user starts typing or adds any content to the editor.You can customize the appearance of the placeholder text using CSS. The placeholder has a class of public-DraftEditorPlaceholder-root.Make sure you've imported the necessary CSS file for react-draft-wysiwyg to ensure proper styling.By adding the placeholder prop, you provide users with a helpful prompt or instruction about what to enter in the editor, improving the user experience of your application.
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  /*const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
   useEffect(() => {
     // This effect runs after the component has mounted. I add useEffect because this error (Warning: Can't call setState on a component that is not yet mounted. This is a no-op, but it might indicate a bug in your application. Instead, assign to `this.state` directly or define a `state = {};` class property with the desired state in the i component.) comes to my console.
     setEditorState(EditorState.createEmpty());
+  }, []);*/
+
+  /* const onEditorStateChange = useCallback((newEditorState: EditorState) => {
+    setEditorState(newEditorState);
   }, []);
+
+  const MemoizedEditor = React.memo(Editor);
+
+  // Then use MemoizedEditor instead of Editor in your render method
+*/
 
   return (
     <Form {...form}>
@@ -336,8 +345,6 @@ export function CreatePostForm() {
               <FormLabel>محتوا</FormLabel>
               <FormControl>
                 <Editor
-                  editorState={editorState}
-                  onEditorStateChange={setEditorState}
                   placeholder="Start typing your content here..."
                   wrapperClassName="editor-wrapper"
                   editorClassName="custom-editor-textarea"
