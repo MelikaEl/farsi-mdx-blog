@@ -62,7 +62,10 @@ import { useTheme } from "next-themes";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "@/node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
+
 import dynamic from "next/dynamic"; //for SSR renndering in Editor component
+
+
 
 const formSchema = z.object({
   date: z.date(), // Make dob optional
@@ -221,6 +224,8 @@ export function CreatePostForm() {
   // Then use MemoizedEditor instead of Editor in your render method
 */
 
+
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -348,6 +353,7 @@ export function CreatePostForm() {
                   placeholder="شروع به نوشتن کنید..."
                   wrapperClassName="editor-wrapper"
                   editorClassName="custom-editor-textarea"
+                  textAlignment='right'
                 />
               </FormControl>
               <FormMessage />
