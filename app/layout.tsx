@@ -25,6 +25,10 @@ import localFont from 'next/font/local'
 })*/
 
 const myFont = localFont({
+  src: './Vazir-Bold-FD-WOL.woff2'
+})
+
+/*const myFont = localFont({
   src: [
     {
       path: './Vazir-Bold.woff2'
@@ -33,7 +37,7 @@ const myFont = localFont({
       path: './Vazir-Bold-FD-WOL.woff2'
     }
   ],
-})
+})*/
 
 
 export const metadata: Metadata = {
