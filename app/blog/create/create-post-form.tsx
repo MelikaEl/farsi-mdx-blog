@@ -345,7 +345,7 @@ export function CreatePostForm() {
               <FormLabel>محتوا</FormLabel>
               <FormControl>
                 <Editor
-                  placeholder="Start typing your content here..."
+                  placeholder="شروع به نوشتن کنید..."
                   wrapperClassName="editor-wrapper"
                   editorClassName="custom-editor-textarea"
                 />
