@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState} from "react";
+import React, { useState } from "react";
 
 //import { generatePostsCache } from "@/lib/posts-utils.mjs";
 
@@ -59,13 +59,27 @@ import { useTheme } from "next-themes";
 
 //import { Editor } from "react-draft-wysiwyg";
 //import { EditorState } from "draft-js";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import "@/node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-
+//import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+// import "@/node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 import dynamic from "next/dynamic"; //for SSR renndering in Editor component
 
+import type { ForwardedRef } from "react";
 
+import {
+  MDXEditor,
+  MDXEditorMethods,
+  UndoRedo,
+  BoldItalicUnderlineToggles,
+  toolbarPlugin,
+} from "@mdxeditor/editor";
+
+import "@mdxeditor/editor/style.css";
+
+interface EditorProps {
+  markdown: string;
+  editorRef?: React.MutableRefObject<MDXEditorMethods | null>;
+}
 
 const formSchema = z.object({
   date: z.date(), // Make dob optional
@@ -86,7 +100,9 @@ const formSchema = z.object({
   tags: z.string().optional(),
 });
 
-export function CreatePostForm() {
+//const CreatePostForm: FC<EditorProps> = ({ markdown, editorRef }) => {
+//export function CreatePostForm() {
+  export function CreatePostForm({ markdown, editorRef }: EditorProps) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
   const [selectedValue, setSelectedValue] = useState("blog");
@@ -198,8 +214,8 @@ export function CreatePostForm() {
   }, []);*/
 
   //This approach ensures that the Editor component is only loaded and rendered in the browser, avoiding "window is not defined" errors in server-side environments. Server-Side Rendering (SSR) Challenges:When using React Draft Wysiwyg with frameworks that support server-side rendering (like Next.js), you may encounter "window is not defined" errors. This happens because the window object doesn't exist in a Node.js environment where the initial render occurs.Dynamic Import Solution:To overcome SSR issues, a common solution is to use dynamic imports. This ensures that the component is only loaded and rendered on the client side where the window object is available. To use React Draft Wysiwyg in SSR environments, you typically need to:Use dynamic imports to load the component only on the client side.Ensure that any code accessing window or browser-specific APIs is only executed in the browser environment.
-  const Editor = dynamic(
-    () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
+  const MDXEditor = dynamic(
+    () => import("@mdxeditor/editor").then((mod) => mod.MDXEditor),
     { ssr: false }
   );
 
@@ -223,8 +239,6 @@ export function CreatePostForm() {
 
   // Then use MemoizedEditor instead of Editor in your render method
 */
-
-
 
   return (
     <Form {...form}>
@@ -349,11 +363,19 @@ export function CreatePostForm() {
             <FormItem>
               <FormLabel>محتوا</FormLabel>
               <FormControl>
-                <Editor
-                  placeholder="شروع به نوشتن کنید..."
-                  wrapperClassName="editor-wrapper"
-                  editorClassName="custom-editor-textarea"
-                  textAlignment='right'
+                <MDXEditor
+                  markdown="Hello world"
+                  plugins={[
+                    toolbarPlugin({
+                      toolbarContents: () => (
+                        <>
+                          {" "}
+                          <UndoRedo />
+                          <BoldItalicUnderlineToggles />
+                        </>
+                      ),
+                    }),
+                  ]}
                 />
               </FormControl>
               <FormMessage />
@@ -397,4 +419,5 @@ export function CreatePostForm() {
       </form>
     </Form>
   );
-}
+};
+
