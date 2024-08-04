@@ -71,14 +71,17 @@ import {
   MDXEditorMethods,
   UndoRedo,
   BoldItalicUnderlineToggles,
+  CreateLink,
   toolbarPlugin,
+  linkPlugin,
+  linkDialogPlugin
 } from "@mdxeditor/editor";
 
 import "@mdxeditor/editor/style.css";
 
 interface EditorProps {
   markdown: string;
-  editorRef?: React.MutableRefObject<MDXEditorMethods | null>;
+  editorRef?: React.MutableRefObject<MDXEditorMethods | null>; //This line defines a prop called editorRef with a specific TypeScript type. Let's examine each part:editorRef?:The ? after editorRef indicates that this prop is optional. It means that when using the component, you don't have to provide this prop if you don't need it.React.MutableRefObject:This is a type provided by React for mutable refs.Mutable refs are used to hold a mutable value that persists for the full lifetime of the component.<MDXEditorMethods | null>:This is a generic type parameter for MutableRefObject.It specifies that the ref can hold either an object of type MDXEditorMethods or null.The | symbol represents a union type, meaning it can be one type or the other.MDXEditorMethods:This is likely an interface or type defined by the MDXEditor library. It probably contains methods that can be called on the editor instance, such as focusing the editor, getting or setting content, etc.
 }
 
 const formSchema = z.object({
@@ -102,7 +105,7 @@ const formSchema = z.object({
 
 //const CreatePostForm: FC<EditorProps> = ({ markdown, editorRef }) => {
 //export function CreatePostForm() {
-  export function CreatePostForm({ markdown, editorRef }: EditorProps) {
+export function CreatePostForm({ markdown, editorRef }: EditorProps) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
   const [selectedValue, setSelectedValue] = useState("blog");
@@ -364,6 +367,7 @@ const formSchema = z.object({
               <FormLabel>محتوا</FormLabel>
               <FormControl>
                 <MDXEditor
+                  ref={editorRef}
                   markdown="Hello world"
                   plugins={[
                     toolbarPlugin({
@@ -372,9 +376,12 @@ const formSchema = z.object({
                           {" "}
                           <UndoRedo />
                           <BoldItalicUnderlineToggles />
+                          <CreateLink /> 
                         </>
-                      ),
+                      ),// for opening the create link modal I should click the textarea
                     }),
+                    linkPlugin(),
+                    linkDialogPlugin(), // Add the MDXEditor plugins here
                   ]}
                 />
               </FormControl>
@@ -419,5 +426,4 @@ const formSchema = z.object({
       </form>
     </Form>
   );
-};
-
+}
