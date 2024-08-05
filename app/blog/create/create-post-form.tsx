@@ -372,7 +372,7 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
               <FormControl>
                 <MDXEditor
                   //ref={editorRef}
-                  markdown={form.watch("content")}//markdown baiad id: content ra bekhanad.
+                  markdown={form.watch("content")}//MDXEditor should reads id: content. It reads our contents that I write in textarea of MDXEditor.
                   plugins={[
                     toolbarPlugin({
                       toolbarContents: () => (
@@ -390,7 +390,7 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
                     linkDialogPlugin(), // Add the MDXEditor plugins here
                     imagePlugin()
                   ]}
-                  onChange={(value) => form.setValue("content", value)}
+                  onChange={(value) => form.setValue("content", value)} //It is essential for submitting our contents in the MDXEditor.
                 />
               </FormControl>
               <FormMessage />
