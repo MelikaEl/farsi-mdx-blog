@@ -74,7 +74,9 @@ import {
   CreateLink,
   toolbarPlugin,
   linkPlugin,
-  linkDialogPlugin
+  linkDialogPlugin,
+  InsertImage,
+  imagePlugin
 } from "@mdxeditor/editor";
 
 import "@mdxeditor/editor/style.css";
@@ -243,6 +245,8 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
   // Then use MemoizedEditor instead of Editor in your render method
 */
 
+
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -367,8 +371,8 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
               <FormLabel>محتوا</FormLabel>
               <FormControl>
                 <MDXEditor
-                  ref={editorRef}
-                  markdown="Hello world"
+                  //ref={editorRef}
+                  markdown={form.watch("content")}//markdown baiad id: content ra bekhanad.
                   plugins={[
                     toolbarPlugin({
                       toolbarContents: () => (
@@ -377,12 +381,16 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
                           <UndoRedo />
                           <BoldItalicUnderlineToggles />
                           <CreateLink /> 
+                          <InsertImage/>
+                          
                         </>
                       ),// for opening the create link modal I should click the textarea
                     }),
                     linkPlugin(),
                     linkDialogPlugin(), // Add the MDXEditor plugins here
+                    imagePlugin()
                   ]}
+                  onChange={(value) => form.setValue("content", value)}
                 />
               </FormControl>
               <FormMessage />
@@ -427,3 +435,6 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
     </Form>
   );
 }
+
+
+
