@@ -59,7 +59,7 @@ import {
   imagePlugin,
 } from "@mdxeditor/editor";
 import "@mdxeditor/editor/style.css";
-import Editor from "@/components/mdx-editor"; // Import the isolated MDXEditor component
+import Editor from "@/components/mdx-editor"; // Import the isolated MDXEditor component because the form doesn't affect the state of the MDXEditor component
 
 
 interface EditorProps {
@@ -177,10 +177,7 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
     focusEditor();
   }, []);*/
   //This approach ensures that the Editor component is only loaded and rendered in the browser, avoiding "window is not defined" errors in server-side environments. Server-Side Rendering (SSR) Challenges:When using React Draft Wysiwyg with frameworks that support server-side rendering (like Next.js), you may encounter "window is not defined" errors. This happens because the window object doesn't exist in a Node.js environment where the initial render occurs.Dynamic Import Solution:To overcome SSR issues, a common solution is to use dynamic imports. This ensures that the component is only loaded and rendered on the client side where the window object is available. To use React Draft Wysiwyg in SSR environments, you typically need to:Use dynamic imports to load the component only on the client side.Ensure that any code accessing window or browser-specific APIs is only executed in the browser environment.
-  const MDXEditor = dynamic(
-    () => import("@mdxeditor/editor").then((mod) => mod.MDXEditor),
-    { ssr: false }
-  );
+  
   /* const [editorState, setEditorState] = useState(
     () => EditorState.createEmpty()
   );*/ // I add these states in my Editor component in my form
