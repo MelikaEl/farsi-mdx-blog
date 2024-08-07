@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import dynamic from "next/dynamic"; // for SSR rendering in Editor component
-import { debounce } from "lodash";// we use debounce from lodash because ofr the closing and reopening of the editor while typing
+import { debounce } from "lodash"; // we use debounce from lodash because ofr the closing and reopening of the editor while typing
 import {
   MDXEditor,
   MDXEditorMethods,
@@ -17,7 +17,12 @@ import {
 } from "@mdxeditor/editor";
 import "@mdxeditor/editor/style.css";
 
-const MDXEditorComponent = dynamic(() => import("@mdxeditor/editor").then((mod) => mod.MDXEditor), { ssr: false });
+import { useTheme } from "next-themes";
+
+const MDXEditorComponent = dynamic(
+  () => import("@mdxeditor/editor").then((mod) => mod.MDXEditor),
+  { ssr: false }
+);
 
 interface EditorProps {
   initialContent: string;
@@ -37,8 +42,11 @@ const Editor: React.FC<EditorProps> = ({ initialContent, onContentChange }) => {
     onContentChange(value);
   }, 500); // Debounce delay in milliseconds
 
+  const { theme } = useTheme();
+
   return (
     <MDXEditorComponent
+      className={theme === "dark" ? "dark-theme dark-editor"  : ""} // based on the docs of the MDXEditor (theming part) we use className="dark-theme dark-editor". drak defined in the tailwindcss
       ref={editorRef}
       markdown={editorContent}
       plugins={[
@@ -49,7 +57,6 @@ const Editor: React.FC<EditorProps> = ({ initialContent, onContentChange }) => {
               <BoldItalicUnderlineToggles />
               <CreateLink />
               <InsertImage />
-             
             </>
           ),
         }),
@@ -58,22 +65,12 @@ const Editor: React.FC<EditorProps> = ({ initialContent, onContentChange }) => {
         imagePlugin(),
         listsPlugin(),
       ]}
-      onChange={debouncedContentUpdate}// this is necessary for the submition of the data in the MDXEditor component after we submit the form
+      onChange={debouncedContentUpdate} // this is necessary for the submition of the data in the MDXEditor component after we submit the form
     />
   );
 };
 
 export default Editor;
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useRef, useEffect, useState } from "react";
 // import dynamic from "next/dynamic"; //for SSR renndering in Editor component
@@ -113,15 +110,10 @@ export default Editor;
 //   { ssr: false }
 // );
 
-
-
 // function Editor () {
 //   const editorRef = useRef<MDXEditorMethods | null>(null);
 //   //const [editorContent, setEditorContent] = useState(initialContent);
 
- 
-
-  
 //   const formSchema = z.object({
 //     date: z.date(), // Make dob optional
 //     type: z.string().optional(),
@@ -140,7 +132,6 @@ export default Editor;
 //     categories: z.array(z.string()).nonempty(),
 //     tags: z.string().optional(),
 //   });
-  
 
 //   const form = useForm<z.infer<typeof formSchema>>({
 //     resolver: zodResolver(formSchema),
@@ -197,12 +188,6 @@ export default Editor;
 // };
 
 // export default Editor;
-
-
-
-
-
-
 
 // import React from "react";
 // import dynamic from "next/dynamic"; //for SSR renndering in Editor component
