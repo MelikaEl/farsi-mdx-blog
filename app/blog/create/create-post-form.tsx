@@ -62,31 +62,17 @@ import { useTheme } from "next-themes";
 //import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 // import "@/node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
-import dynamic from "next/dynamic"; //for SSR renndering in Editor component
 
 import type { ForwardedRef } from "react";
 
-import {
-  MDXEditor,
-  MDXEditorMethods,
-  UndoRedo,
-  BoldItalicUnderlineToggles,
-  CreateLink,
-  toolbarPlugin,
-  linkPlugin,
-  linkDialogPlugin,
-  InsertImage,
-  imagePlugin
-} from "@mdxeditor/editor";
+import Editor from "@/components/mdx-editor"; // Import the isolated MDXEditor component
 
-import "@mdxeditor/editor/style.css";
-
-import { debounce } from "lodash";
 
 interface EditorProps {
-  markdown: string;
-  editorRef?: React.MutableRefObject<MDXEditorMethods | null>; //This line defines a prop called editorRef with a specific TypeScript type. Let's examine each part:editorRef?:The ? after editorRef indicates that this prop is optional. It means that when using the component, you don't have to provide this prop if you don't need it.React.MutableRefObject:This is a type provided by React for mutable refs.Mutable refs are used to hold a mutable value that persists for the full lifetime of the component.<MDXEditorMethods | null>:This is a generic type parameter for MutableRefObject.It specifies that the ref can hold either an object of type MDXEditorMethods or null.The | symbol represents a union type, meaning it can be one type or the other.MDXEditorMethods:This is likely an interface or type defined by the MDXEditor library. It probably contains methods that can be called on the editor instance, such as focusing the editor, getting or setting content, etc.
+  initialContent: string;
+  onContentChange: (content: string) => void;
 }
+
 
 const formSchema = z.object({
   date: z.date(), // Make dob optional
@@ -109,7 +95,7 @@ const formSchema = z.object({
 
 //const CreatePostForm: FC<EditorProps> = ({ markdown, editorRef }) => {
 //export function CreatePostForm() {
-export function CreatePostForm({ markdown, editorRef }: EditorProps) {
+export function CreatePostForm({ initialContent, onContentChange}: EditorProps) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
   const [selectedValue, setSelectedValue] = useState("blog");
@@ -126,6 +112,8 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
       tags: "",
     },
   });
+
+  const [editorContent, setEditorContent] = useState("");
 
   // const { user } = useUser(); // Retrieve user information
   const authorName = "O Wolfson"; // Replace 'fullName' with the appropriate field
@@ -145,6 +133,7 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
     // Add the author data to the submission values
     const submissionData = {
       ...values,
+      content: editorContent,
       id: uuidv4(),
     };
 
@@ -166,6 +155,8 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
 
       // Reset the form here
       form.reset();
+
+      setEditorContent(""); // Reset the editor content
 
       router.push(`/blog/${result}`); // Redirect to the blog page
 
@@ -221,10 +212,7 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
   }, []);*/
 
   //This approach ensures that the Editor component is only loaded and rendered in the browser, avoiding "window is not defined" errors in server-side environments. Server-Side Rendering (SSR) Challenges:When using React Draft Wysiwyg with frameworks that support server-side rendering (like Next.js), you may encounter "window is not defined" errors. This happens because the window object doesn't exist in a Node.js environment where the initial render occurs.Dynamic Import Solution:To overcome SSR issues, a common solution is to use dynamic imports. This ensures that the component is only loaded and rendered on the client side where the window object is available. To use React Draft Wysiwyg in SSR environments, you typically need to:Use dynamic imports to load the component only on the client side.Ensure that any code accessing window or browser-specific APIs is only executed in the browser environment.
-  const MDXEditor = dynamic(
-    () => import("@mdxeditor/editor").then((mod) => mod.MDXEditor),
-    { ssr: false }
-  );
+  
 
   /* const [editorState, setEditorState] = useState(
     () => EditorState.createEmpty()
@@ -247,9 +235,7 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
   // Then use MemoizedEditor instead of Editor in your render method
 */
 
-const debouncedContentUpdate = debounce((value) => {
-  form.setValue("content", value);
-}, 500); // Debounce delay in millisecondss
+
 
   return (
     <Form {...form}>
@@ -374,28 +360,7 @@ const debouncedContentUpdate = debounce((value) => {
             <FormItem>
               <FormLabel>محتوا</FormLabel>
               <FormControl>
-                <MDXEditor
-                  //ref={editorRef}
-                  markdown={form.watch("content")}//MDXEditor should reads id: content. It reads our contents that I write in textarea of MDXEditor.
-                  plugins={[
-                    toolbarPlugin({
-                      toolbarContents: () => (
-                        <>
-                          {" "}
-                          <UndoRedo />
-                          <BoldItalicUnderlineToggles />
-                          <CreateLink /> 
-                          <InsertImage/>
-                          
-                        </>
-                      ),// for opening the create link modal I should click the textarea
-                    }),
-                    linkPlugin(),
-                    linkDialogPlugin(), // Add the MDXEditor plugins here
-                    imagePlugin()
-                  ]}
-                  onChange={(value) => debouncedContentUpdate(value)} //It is essential for submitting our contents in the MDXEditor.
-                />
+              <Editor initialContent={editorContent} onContentChange={setEditorContent} />
               </FormControl>
               <FormMessage />
             </FormItem>
