@@ -57,6 +57,8 @@ import "react-multi-date-picker/styles/colors/green.css";
 import "react-multi-date-picker/styles/backgrounds/bg-dark.css";
 import { useTheme } from "next-themes";
 
+import Editor from "@/components/mdx-editor"; // Import the isolated MDXEditor component because the form doesn't affect the state of the MDXEditor component
+
 const formSchema = z.object({
   date: z.date(),
   type: z.string().optional(),
@@ -278,12 +280,10 @@ export function EditPostForm({ postData }: { postData: any }) {
               <FormItem>
                 <FormLabel>محتوا</FormLabel>
                 <FormControl>
-                  <Textarea
-                    id="content"
-                    className="h-[300px]"
-                    placeholder="محتوا"
-                    {...field}
-                  />
+                <Editor
+                  initialContent={form.watch("content")}
+                  onContentChange={(value) => form.setValue("content", value)}
+                />
                 </FormControl>
                 <FormMessage />
               </FormItem>
