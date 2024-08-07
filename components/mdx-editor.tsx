@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import dynamic from "next/dynamic";//for SSR renndering in Editor component
+import dynamic from "next/dynamic"; // for SSR rendering in Editor component
 import { debounce } from "lodash";
 import {
   MDXEditor,
@@ -74,6 +74,129 @@ export default Editor;
 
 
 
+
+// import React, { useRef, useEffect, useState } from "react";
+// import dynamic from "next/dynamic"; //for SSR renndering in Editor component
+// import { debounce } from "lodash";
+// import {
+//   MDXEditor,
+//   MDXEditorMethods,
+//   toolbarPlugin,
+//   linkPlugin,
+//   linkDialogPlugin,
+//   imagePlugin,
+//   listsPlugin,
+//   UndoRedo,
+//   BoldItalicUnderlineToggles,
+//   CreateLink,
+//   InsertImage,
+//   ListsToggle,
+// } from "@mdxeditor/editor";
+// import "@mdxeditor/editor/style.css";
+
+// import {
+//   Form,
+//   FormControl,
+//   FormDescription,
+//   FormField,
+//   FormItem,
+//   FormLabel,
+//   FormMessage,
+// } from "@/components/ui/form";
+
+// import { zodResolver } from "@hookform/resolvers/zod";
+// import { useForm } from "react-hook-form";
+// import * as z from "zod";
+
+// const MDXEditorComponent = dynamic(
+//   () => import("@mdxeditor/editor").then((mod) => mod.MDXEditor),
+//   { ssr: false }
+// );
+
+
+
+// function Editor () {
+//   const editorRef = useRef<MDXEditorMethods | null>(null);
+//   //const [editorContent, setEditorContent] = useState(initialContent);
+
+ 
+
+  
+//   const formSchema = z.object({
+//     date: z.date(), // Make dob optional
+//     type: z.string().optional(),
+//     title: z.string().min(3, {
+//       message: "عنوان باید حداقل 2 کاراکتر باشد.",
+//     }),
+//     author: z.string().min(3, {
+//       message: "نویسنده باید حداقل 3 کاراکتر داشته باشد.",
+//     }),
+//     description: z.string().min(15, {
+//       message: "توضیحات باید حداقل 15 کاراکتر باشد.",
+//     }),
+//     content: z.string().min(2, {
+//       message: "محتوا باید حداقل 2 کاراکتر باشد.",
+//     }),
+//     categories: z.array(z.string()).nonempty(),
+//     tags: z.string().optional(),
+//   });
+  
+
+//   const form = useForm<z.infer<typeof formSchema>>({
+//     resolver: zodResolver(formSchema),
+//     defaultValues: {
+//       date: new Date(),
+//       type: "blog",
+//       title: "",
+//       author: "",
+//       description: "",
+//       content: "",
+//       categories: ["توسعه وب"],
+//       tags: "",
+//     },
+//   });
+
+//   const [editorContent, setEditorContent] = useState("");
+
+//   return (
+//     <FormField
+//       control={form.control}
+//       name="content"
+//       render={({ field }) => (
+//         <FormItem>
+//           <FormLabel>محتوا</FormLabel>
+//           <FormControl>
+//             <MDXEditorComponent
+//               ref={editorRef}
+//               markdown={form.watch("content")}
+//               plugins={[
+//                 toolbarPlugin({
+//                   toolbarContents: () => (
+//                     <>
+//                       <UndoRedo />
+//                       <BoldItalicUnderlineToggles />
+//                       <CreateLink />
+//                       <InsertImage />
+//                       <ListsToggle />
+//                     </>
+//                   ),
+//                 }),
+//                 linkPlugin(),
+//                 linkDialogPlugin(),
+//                 imagePlugin(),
+//                 listsPlugin(),
+//               ]}
+//               onChange={(value) => form.setValue("content", value)}
+//             />
+//           </FormControl>
+//           <FormMessage />
+//         </FormItem>
+//       )}
+//     />
+//   );
+// };
+
+// export default Editor;
 
 
 
