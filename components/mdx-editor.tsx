@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import dynamic from "next/dynamic"; // for SSR rendering in Editor component
-import { debounce } from "lodash";
+import { debounce } from "lodash";// we use debounce from lodash because ofr the closing and reopening of the editor while typing
 import {
   MDXEditor,
   MDXEditorMethods,
@@ -49,7 +49,7 @@ const Editor: React.FC<EditorProps> = ({ initialContent, onContentChange }) => {
               <BoldItalicUnderlineToggles />
               <CreateLink />
               <InsertImage />
-              <ListsToggle />
+             
             </>
           ),
         }),
@@ -58,7 +58,7 @@ const Editor: React.FC<EditorProps> = ({ initialContent, onContentChange }) => {
         imagePlugin(),
         listsPlugin(),
       ]}
-      onChange={debouncedContentUpdate}
+      onChange={debouncedContentUpdate}// this is necessary for the submition of the data in the MDXEditor component after we submit the form
     />
   );
 };
