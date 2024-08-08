@@ -14,6 +14,9 @@ import {
   CreateLink,
   InsertImage,
   ListsToggle,
+  BlockTypeSelect,
+  headingsPlugin,
+  quotePlugin
 } from "@mdxeditor/editor";
 import "@mdxeditor/editor/style.css";
 
@@ -57,6 +60,7 @@ const Editor: React.FC<EditorProps> = ({ initialContent, onContentChange }) => {
               <BoldItalicUnderlineToggles />
               <CreateLink />
               <InsertImage />
+              <BlockTypeSelect/>
             </>
           ),
         }),
@@ -64,6 +68,8 @@ const Editor: React.FC<EditorProps> = ({ initialContent, onContentChange }) => {
         linkDialogPlugin(),
         imagePlugin(),
         listsPlugin(),
+        headingsPlugin(),//to have h1.....h6 in the items of (select block type) item in the toolbar, we should use headingsPlugin beside BlockTypeSelect component
+        quotePlugin()//to have Quote in the items of (select block type) item in the toolbar, we should use quotePlugin beside BlockTypeSelect component
       ]}
       onChange={debouncedContentUpdate} // this is necessary for the submition of the data in the MDXEditor component after we submit the form
     />
