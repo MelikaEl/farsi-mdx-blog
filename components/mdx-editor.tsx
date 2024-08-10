@@ -8,15 +8,15 @@ import {
   linkPlugin,
   linkDialogPlugin,
   imagePlugin,
-  listsPlugin,
   UndoRedo,
   BoldItalicUnderlineToggles,
   CreateLink,
   InsertImage,
-  ListsToggle,
   BlockTypeSelect,
   headingsPlugin,
-  quotePlugin
+  quotePlugin,
+  listsPlugin,
+  ListsToggle,
 } from "@mdxeditor/editor";
 import "@mdxeditor/editor/style.css";
 
@@ -49,27 +49,29 @@ const Editor: React.FC<EditorProps> = ({ initialContent, onContentChange }) => {
 
   return (
     <MDXEditorComponent
-      className={theme === "dark" ? "dark-theme dark-editor"  : ""} // based on the docs of the MDXEditor (theming part) we use className="dark-theme dark-editor". drak defined in the tailwindcss
-      ref={editorRef}
+      className={theme === "dark" ? "dark-theme dark-editor" : ""} // based on the docs of the MDXEditor (theming part) we use className="dark-theme dark-editor". drak defined in the tailwindcss
+     // ref={editorRef}
       markdown={editorContent}
       plugins={[
         toolbarPlugin({
           toolbarContents: () => (
             <>
+               {' '}
+              <ListsToggle />
               <UndoRedo />
               <BoldItalicUnderlineToggles />
               <CreateLink />
               <InsertImage />
-              <BlockTypeSelect/>
+              <BlockTypeSelect />
             </>
-          ),
+          )
         }),
+        listsPlugin(),
         linkPlugin(),
         linkDialogPlugin(),
         imagePlugin(),
-        listsPlugin(),
-        headingsPlugin(),//to have h1.....h6 in the items of (select block type) item in the toolbar, we should use headingsPlugin beside BlockTypeSelect component
-        quotePlugin()//to have Quote in the items of (select block type) item in the toolbar, we should use quotePlugin beside BlockTypeSelect component
+        headingsPlugin(), //to have h1.....h6 in the items of (select block type) item in the toolbar, we should use headingsPlugin beside BlockTypeSelect component
+        quotePlugin(), //to have Quote in the items of (select block type) item in the toolbar, we should use quotePlugin beside BlockTypeSelect component
       ]}
       onChange={debouncedContentUpdate} // this is necessary for the submition of the data in the MDXEditor component after we submit the form
     />
