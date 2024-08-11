@@ -18,11 +18,10 @@ const Editor: React.FC<EditorProps> = ({ initialContent, onContentChange }) => {
   // Initialize the tiptap editor
   const editor = useEditor({
     extensions: [StarterKit],
-    content: editorContent,
+    content: initialContent,
     onUpdate: ({ editor }) => {
-      const json = editor.getJSON();
-      const html = editor.getHTML();
-      debouncedContentUpdate(html); // Update content on change
+      const html = editor.getHTML(); // Update content on change
+      onContentChange(html); 
     },
   });
 
