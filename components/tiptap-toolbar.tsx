@@ -112,7 +112,7 @@ const Editor: React.FC<EditorProps> = ({ initialContent, onContentChange }) => {
 
 
   return (
-    <EditorProvider  slotBefore={<MenuBar />} content={editor.getHTML()} >
+    <EditorProvider  slotBefore={<MenuBar />}  >
       <div >
         <EditorContent editor={editor} />
       </div>
