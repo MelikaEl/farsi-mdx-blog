@@ -15,8 +15,12 @@ import {
   BlockTypeSelect,
   headingsPlugin,
   quotePlugin,
-  listsPlugin,
-  ListsToggle,
+  InsertFrontmatter,
+  frontmatterPlugin,
+  InsertTable,
+  tablePlugin,
+  InsertThematicBreak,
+  thematicBreakPlugin
 } from "@mdxeditor/editor";
 import "@mdxeditor/editor/style.css";
 
@@ -57,21 +61,27 @@ const Editor: React.FC<EditorProps> = ({ initialContent, onContentChange }) => {
           toolbarContents: () => (
             <>
                {' '}
-              <ListsToggle />
+            
               <UndoRedo />
               <BoldItalicUnderlineToggles />
               <CreateLink />
               <InsertImage />
               <BlockTypeSelect />
+              <InsertFrontmatter/>
+              <InsertTable/>
+              <InsertThematicBreak/>
             </>
           )
         }),
-        listsPlugin(),
+      
         linkPlugin(),
         linkDialogPlugin(),
         imagePlugin(),
         headingsPlugin(), //to have h1.....h6 in the items of (select block type) item in the toolbar, we should use headingsPlugin beside BlockTypeSelect component
         quotePlugin(), //to have Quote in the items of (select block type) item in the toolbar, we should use quotePlugin beside BlockTypeSelect component
+        frontmatterPlugin(),
+        tablePlugin(),
+        thematicBreakPlugin()
       ]}
       onChange={debouncedContentUpdate} // this is necessary for the submition of the data in the MDXEditor component after we submit the form
     />
@@ -79,6 +89,105 @@ const Editor: React.FC<EditorProps> = ({ initialContent, onContentChange }) => {
 };
 
 export default Editor;
+
+
+
+
+
+
+
+
+
+
+// import React, { useRef, useEffect, useState } from "react";
+// import dynamic from "next/dynamic"; // for SSR rendering in Editor component
+// import { debounce } from "lodash"; // we use debounce from lodash because ofr the closing and reopening of the editor while typing
+// import {
+//   MDXEditor,
+//   MDXEditorMethods,
+//   toolbarPlugin,
+//   linkPlugin,
+//   linkDialogPlugin,
+//   imagePlugin,
+//   UndoRedo,
+//   BoldItalicUnderlineToggles,
+//   CreateLink,
+//   InsertImage,
+//   BlockTypeSelect,
+//   headingsPlugin,
+//   quotePlugin,
+//   listsPlugin,
+//   ListsToggle,
+// } from "@mdxeditor/editor";
+// import "@mdxeditor/editor/style.css";
+// import TiptapEditor from '@/components/tiptap-editor'
+
+// import { useTheme } from "next-themes";
+
+// const MDXEditorComponent = dynamic(
+//   () => import("@mdxeditor/editor").then((mod) => mod.MDXEditor),
+//   { ssr: false }
+// );
+
+// interface EditorProps {
+//   initialContent: string;
+//   onContentChange: (content: string) => void;
+// }
+
+// const Editor: React.FC<EditorProps> = ({ initialContent, onContentChange }) => {
+//   const editorRef = useRef<MDXEditorMethods | null>(null);
+//   const [editorContent, setEditorContent] = useState(initialContent);
+
+//   useEffect(() => {
+//     setEditorContent(initialContent);
+//   }, [initialContent]);
+
+//   const debouncedContentUpdate = debounce((value: string) => {
+//     setEditorContent(value);
+//     onContentChange(value);
+//   }, 500); // Debounce delay in milliseconds
+
+//   const { theme } = useTheme();
+
+  
+
+//   return (
+//     // <MDXEditorComponent
+//     //   className={theme === "dark" ? "dark-theme dark-editor" : ""} // based on the docs of the MDXEditor (theming part) we use className="dark-theme dark-editor". drak defined in the tailwindcss
+//     //  // ref={editorRef}
+//     //   markdown={editorContent}
+//     //   plugins={[
+//     //     toolbarPlugin({
+//     //       toolbarContents: () => (
+//     //         <>
+//     //            {' '}
+//     //           <ListsToggle />
+//     //           <UndoRedo />
+//     //           <BoldItalicUnderlineToggles />
+//     //           <CreateLink />
+//     //           <InsertImage />
+//     //           <BlockTypeSelect />
+//     //         </>
+//     //       )
+//     //     }),
+//     //     listsPlugin(),
+//     //     linkPlugin(),
+//     //     linkDialogPlugin(),
+//     //     imagePlugin(),
+//     //     headingsPlugin(), //to have h1.....h6 in the items of (select block type) item in the toolbar, we should use headingsPlugin beside BlockTypeSelect component
+//     //     quotePlugin(), //to have Quote in the items of (select block type) item in the toolbar, we should use quotePlugin beside BlockTypeSelect component
+//     //   ]}
+//     //   onChange={debouncedContentUpdate} // this is necessary for the submition of the data in the MDXEditor component after we submit the form
+//     // />
+//     <TiptapEditor onChange={debouncedContentUpdate}/>
+//   );
+// };
+
+// export default Editor;
+
+
+
+
 
 // import React, { useRef, useEffect, useState } from "react";
 // import dynamic from "next/dynamic"; //for SSR renndering in Editor component
