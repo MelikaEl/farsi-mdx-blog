@@ -1,127 +1,143 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //tiptap editor with tiptap toolbar that has error
-import React, { useEffect, useRef, useState } from "react";
-import { Editor as TiptapEditor, EditorContent, useEditor, EditorProvider, useCurrentEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import { debounce } from "lodash"; // for debouncing the content update
-import { useTheme } from "next-themes";
-import { Color } from '@tiptap/extension-color';
-import ListItem from '@tiptap/extension-list-item';
-import TextStyle from '@tiptap/extension-text-style';
+// import React, { useEffect, useRef, useState } from "react";
+// import { Editor as TiptapEditor, EditorContent, useEditor, EditorProvider, useCurrentEditor } from "@tiptap/react";
+// import StarterKit from "@tiptap/starter-kit";
+// import { debounce } from "lodash"; // for debouncing the content update
+// import { useTheme } from "next-themes";
+// import { Color } from '@tiptap/extension-color';
+// import ListItem from '@tiptap/extension-list-item';
+// import TextStyle from '@tiptap/extension-text-style';
 
-import dynamic from "next/dynamic"; // for SSR rendering in Editor component
+// import dynamic from "next/dynamic"; // for SSR rendering in Editor component
 
-/*const EditorProviderComponent = dynamic(
-  () => import("@tiptap/react").then((mod) => mod.EditorProvider),
-  { ssr: false }
-);*/
+// /*const EditorProviderComponent = dynamic(
+//   () => import("@tiptap/react").then((mod) => mod.EditorProvider),
+//   { ssr: false }
+// );*/
 
-interface EditorProps {
-  initialContent: string;
-  onContentChange: (content: string) => void;
-}
+// interface EditorProps {
+//   initialContent: string;
+//   onContentChange: (content: string) => void;
+// }
 
-const MenuBar = () => {
-  const { editor } = useCurrentEditor();
+// const MenuBar = () => {
+//   const { editor } = useCurrentEditor();
 
-  if (!editor) {
-    return null;
-  }
+//   if (!editor) {
+//     return null;
+//   }
 
-  return (
-    <div className="control-group">
-      <div className="button-group">
-        <button onClick={() => editor.chain().focus().toggleBold().run()} disabled={!editor.can().chain().focus().toggleBold().run()} className={editor.isActive('bold') ? 'is-active' : ''}>
-          Bold
-        </button>
-        <button onClick={() => editor.chain().focus().toggleItalic().run()} disabled={!editor.can().chain().focus().toggleItalic().run()} className={editor.isActive('italic') ? 'is-active' : ''}>
-          Italic
-        </button>
-        <button onClick={() => editor.chain().focus().toggleStrike().run()} disabled={!editor.can().chain().focus().toggleStrike().run()} className={editor.isActive('strike') ? 'is-active' : ''}>
-          Strike
-        </button>
-        <button onClick={() => editor.chain().focus().toggleCode().run()} disabled={!editor.can().chain().focus().toggleCode().run()} className={editor.isActive('code') ? 'is-active' : ''}>
-          Code
-        </button>
-        <button onClick={() => editor.chain().focus().unsetAllMarks().run()}>
-          Clear marks
-        </button>
-        <button onClick={() => editor.chain().focus().clearNodes().run()}>
-          Clear nodes
-        </button>
-        <button onClick={() => editor.chain().focus().setParagraph().run()} className={editor.isActive('paragraph') ? 'is-active' : ''}>
-          Paragraph
-        </button>
-        <button onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}>
-          H1
-        </button>
-        <button onClick={() => editor.chain().focus().toggleBulletList().run()} className={editor.isActive('bulletList') ? 'is-active' : ''}>
-          Bullet list
-        </button>
-        <button onClick={() => editor.chain().focus().undo().run()} disabled={!editor.can().chain().focus().undo().run()}>
-          Undo
-        </button>
-        <button onClick={() => editor.chain().focus().redo().run()} disabled={!editor.can().chain().focus().redo().run()}>
-          Redo
-        </button>
-        <button onClick={() => editor.chain().focus().setColor('#958DF1').run()} className={editor.isActive('textStyle', { color: '#958DF1' }) ? 'is-active' : ''}>
-          Purple
-        </button>
-      </div>
-    </div>
-  );
-};
+//   return (
+//     <div className="control-group">
+//       <div className="button-group">
+//         <button onClick={() => editor.chain().focus().toggleBold().run()} disabled={!editor.can().chain().focus().toggleBold().run()} className={editor.isActive('bold') ? 'is-active' : ''}>
+//           Bold
+//         </button>
+//         <button onClick={() => editor.chain().focus().toggleItalic().run()} disabled={!editor.can().chain().focus().toggleItalic().run()} className={editor.isActive('italic') ? 'is-active' : ''}>
+//           Italic
+//         </button>
+//         <button onClick={() => editor.chain().focus().toggleStrike().run()} disabled={!editor.can().chain().focus().toggleStrike().run()} className={editor.isActive('strike') ? 'is-active' : ''}>
+//           Strike
+//         </button>
+//         <button onClick={() => editor.chain().focus().toggleCode().run()} disabled={!editor.can().chain().focus().toggleCode().run()} className={editor.isActive('code') ? 'is-active' : ''}>
+//           Code
+//         </button>
+//         <button onClick={() => editor.chain().focus().unsetAllMarks().run()}>
+//           Clear marks
+//         </button>
+//         <button onClick={() => editor.chain().focus().clearNodes().run()}>
+//           Clear nodes
+//         </button>
+//         <button onClick={() => editor.chain().focus().setParagraph().run()} className={editor.isActive('paragraph') ? 'is-active' : ''}>
+//           Paragraph
+//         </button>
+//         <button onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}>
+//           H1
+//         </button>
+//         <button onClick={() => editor.chain().focus().toggleBulletList().run()} className={editor.isActive('bulletList') ? 'is-active' : ''}>
+//           Bullet list
+//         </button>
+//         <button onClick={() => editor.chain().focus().undo().run()} disabled={!editor.can().chain().focus().undo().run()}>
+//           Undo
+//         </button>
+//         <button onClick={() => editor.chain().focus().redo().run()} disabled={!editor.can().chain().focus().redo().run()}>
+//           Redo
+//         </button>
+//         <button onClick={() => editor.chain().focus().setColor('#958DF1').run()} className={editor.isActive('textStyle', { color: '#958DF1' }) ? 'is-active' : ''}>
+//           Purple
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
 
-const Editor: React.FC<EditorProps> = ({ initialContent, onContentChange }) => {
+// const Editor: React.FC<EditorProps> = ({ initialContent, onContentChange }) => {
 
-  const editorRef = useRef<TiptapEditor | null>(null);
-  const [editorContent, setEditorContent] = useState(initialContent);
-  const { theme } = useTheme();
+//   const editorRef = useRef<TiptapEditor | null>(null);
+//   const [editorContent, setEditorContent] = useState(initialContent);
+//   const { theme } = useTheme();
 
-  // Initialize the tiptap editor
-  const editor = useEditor({
-    //immediatelyRender: false,
-    extensions: [
-      StarterKit,
-      Color.configure({ types: [TextStyle.name, ListItem.name] }),
-      TextStyle.configure({ types: [ListItem.name] }),
-    ],
-    content: initialContent ,
+//   // Initialize the tiptap editor
+//   const editor = useEditor({
+//     //immediatelyRender: false,
+//     extensions: [
+//       StarterKit,
+//       Color.configure({ types: [TextStyle.name, ListItem.name] }),
+//       TextStyle.configure({ types: [ListItem.name] }),
+//     ],
+//     content: initialContent ,
   
-    onUpdate: ({ editor }) => {
-      const html = editor.getHTML(); // Update content on change
-      onContentChange(html);
-    },
-  });
+//     onUpdate: ({ editor }) => {
+//       const html = editor.getHTML(); // Update content on change
+//       onContentChange(html);
+//     },
+//   });
   
 
-  useEffect(() => {
-    if (editor) {
-      editor.commands.setContent(initialContent); // Set initial content
-    }
-  }, [initialContent, editor]);
+//   useEffect(() => {
+//     if (editor) {
+//       editor.commands.setContent(initialContent); // Set initial content
+//     }
+//   }, [initialContent, editor]);
 
-  const debouncedContentUpdate = debounce((value: string) => {
-    setEditorContent(value);
-    onContentChange(value);
-  }, 500); // Debounce delay in milliseconds
+//   const debouncedContentUpdate = debounce((value: string) => {
+//     setEditorContent(value);
+//     onContentChange(value);
+//   }, 500); // Debounce delay in milliseconds
 
- // Ensure the editor is set up before rendering the provider
- if (!editor) {
-  return null; // Prevent rendering until the editor is initialized
-}
+//  // Ensure the editor is set up before rendering the provider
+//  if (!editor) {
+//   return null; // Prevent rendering until the editor is initialized
+// }
 
 
-  return (
-    <EditorProvider  slotBefore={<MenuBar />}  >
-      <div >
-        <EditorContent editor={editor} />
-      </div>
-    </EditorProvider>
-  );
-};
+//   return (
+//     <EditorProvider  slotBefore={<MenuBar />}  >
+//       <div >
+//         <EditorContent editor={editor} />
+//       </div>
+//     </EditorProvider>
+//   );
+// };
 
-//export { Editor };
-export default Editor;
+// //export { Editor };
+// export default Editor;
 
 
 /*
