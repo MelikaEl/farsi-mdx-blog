@@ -6,7 +6,6 @@ import Link from "next/link";
 function CookieConsentComponent() {
   return (
     <div>
-      {" "}
       <CookieConsent
         location="bottom"
         buttonText="I understand"
