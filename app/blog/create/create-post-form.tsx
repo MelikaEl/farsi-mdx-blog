@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 //import { generatePostsCache } from "@/lib/posts-utils.mjs";
-//import DatePickerField from "@/components/date-picker";
+import DatePickerField from "@/components/date-picker";
 //import { Calendar } from "react-multi-date-picker";
 //import persian from "react-date-object/calendars/persian";
 //import persian_fa from "react-date-object/locales/persian_fa";
@@ -223,6 +223,23 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
           name="date"
           render={({ field }) => (
             <FormItem className="flex flex-col">
+              <FormLabel className="font-semibold text-md">Date</FormLabel>
+              <DatePickerField field={field} />
+              {/* <FormDescription>
+                Your date of birth is used to calculate your age.
+              </FormDescription> */}
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+
+
+        {/* <FormField
+          control={form.control}
+          name="date"
+          render={({ field }) => (
+            <FormItem className="flex flex-col">
               <FormLabel className="font-semibold text-md">
                 تاریخ انتشار
               </FormLabel>
@@ -255,11 +272,11 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
               {/*<Calendar calendar={persian} locale={persian_fa} />*/}
               {/* <FormDescription>
                 Your date of birth is used to calculate your age.
-              </FormDescription> */}
-              <FormMessage />
+              </FormDescription> *//*}
+             </form> <FormMessage />
             </FormItem>
-          )}
-        />
+          )}*//*}
+        /> */}
         {/* title */}
         <FormField
           control={form.control}

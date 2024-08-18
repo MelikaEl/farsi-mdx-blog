@@ -58,6 +58,8 @@ import "react-multi-date-picker/styles/backgrounds/bg-dark.css";
 import { useTheme } from "next-themes";
 
 import Editor from "@/components/mdx-editor"; // Import the isolated MDXEditor component because the form doesn't affect the state of the MDXEditor component
+import DatePickerField from "@/components/date-picker";
+
 
 const formSchema = z.object({
   date: z.date(),
@@ -222,27 +224,11 @@ export function EditPostForm({ postData }: { postData: any }) {
             name="date"
             render={({ field }) => (
               <FormItem className="flex flex-col">
-                <FormLabel className="font-semibold text-md">تاریخ</FormLabel>
-                <div style={{ direction: "rtl" }}>
-                  <DatePicker
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    // className="bg-dark"
-                    className={theme === "dark" ? "bg-dark , green" : "green"}
-                    inputClass={
-                      theme === "dark" ? "dark-custom-input" : "custom-input"
-                    }
-                    calendar={persian}
-                    locale={persian_fa}
-                    calendarPosition="bottom-right"
-                    style={{
-                      height: "40px",
-                      borderRadius: "8px",
-                      fontSize: "14px",
-                      padding: "3px 10px",
-                    }}
-                  />
-                </div>
+                <FormLabel className="font-semibold text-md">Date</FormLabel>
+                <DatePickerField field={field} />
+                {/* <FormDescription>
+                Your date of birth is used to calculate your age.
+              </FormDescription> */}
                 <FormMessage />
               </FormItem>
             )}
