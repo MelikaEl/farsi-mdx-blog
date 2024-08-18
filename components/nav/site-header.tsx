@@ -15,8 +15,8 @@ export function SiteHeader() {
         <NavComponent />
         <div className="flex items-center justify-end flex-1 space-x-4">
           <div className="flex gap-4 items-center">
-            {isDevMode() && (
-              <>
+            {/* {isDevMode() && (
+              <> */}
                 {" "}
                 <Link title="ایجاد پست" href="/blog/create">
                   <Button variant="outline" size="icon">
@@ -29,8 +29,8 @@ export function SiteHeader() {
                     <GearIcon className="w-[18px] h-[18px]" />
                   </Button>
                 </Link>
-              </>
-            )}
+              {/* </> */}
+            {/* )} */}
             <ModeToggle />
           </div>
         </div>

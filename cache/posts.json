@@ -685,6 +685,23 @@
     "path": "test58.mdx"
   },
   {
+    "slug": "test60",
+    "id": "a4b88218-254a-45bb-99d8-eba838dedb22",
+    "type": "blog",
+    "author": "الالالالا",
+    "title": "test60",
+    "date": "2024-08-16",
+    "description": "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+    "categories": [
+      "توسعه وب"
+    ],
+    "tags": [
+      null
+    ],
+    "image": "/images/default.jpg",
+    "path": "test60.mdx"
+  },
+  {
     "slug": "اولین-پست",
     "id": "24a25f0d-a708-47f2-b31f-50c798570cbc",
     "type": "وبلاگ",
