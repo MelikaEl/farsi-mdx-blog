@@ -53,7 +53,7 @@ function SortPosts({
       setSortBy(sort.split("_")[0]);
       setSortOrder(sort.split("_")[1]);
     }
-  }, [sort]);
+  }, [sort,changeSort]);
 
   // Handler to change sort
   const handleChangeSort = (newSort: string) => {

@@ -40,7 +40,7 @@ const SearchPosts = ({
     if (searchFromUrl !== inputValue) {
       setInputValue(searchFromUrl);
     }
-  }, [searchParams]);
+  }, [searchParams,search]);
 
   useEffect(() => {
     // console.log("sort", sort);
@@ -62,7 +62,7 @@ const SearchPosts = ({
         );
       }
     },
-    [limit, currentPage, sort, router]
+    [limit, currentPage, sort, router,numBlogs]
   );
 
   const updateSearch = useCallback(
