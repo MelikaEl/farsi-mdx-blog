@@ -15,7 +15,7 @@ import {
 export function ModeToggle() {
   const { setTheme } = useTheme();
 
-  const direction = "rtl" ;
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -25,7 +25,7 @@ export function ModeToggle() {
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" dir={direction}>
+      <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => setTheme("light")}>
         روشن
         </DropdownMenuItem>
