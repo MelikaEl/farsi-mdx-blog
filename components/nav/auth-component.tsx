@@ -13,13 +13,13 @@ function AuthComponent() {
   const outlineButtonVariant = buttonVariants({ variant: "outline" });
   return true ? (
     <div className="flex gap-4 items-center">
-      {isDevMode() && (
+      {/* {isDevMode() && ( */}
         <Link title="Create post" href="/blog/create">
           <Button variant="outline" size="icon">
             <PlusIcon className="w-[18px] h-[18px]" />
           </Button>
         </Link>
-      )}
+      {/* )} */}
       {/* <Link title="Administration" href="/admin">
         <Button variant="outline" size="icon">
           <GearIcon className="w-[18px] h-[18px]" />

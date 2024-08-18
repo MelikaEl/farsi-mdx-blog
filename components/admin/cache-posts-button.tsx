@@ -30,7 +30,7 @@ function CachePostsButton() {
 
   return (
     <>
-      {isDevMode() && (
+      {/* {isDevMode() && ( */}
         <div>
           <Button
             title="پست‌های کش برای به‌روزرسانی رول وبلاگ."
@@ -42,7 +42,7 @@ function CachePostsButton() {
             </div>
           </Button>
         </div>
-      )}
+      {/* )} */}
     </>
   );
 }
