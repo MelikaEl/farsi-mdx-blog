@@ -63,7 +63,11 @@ export async function generateStaticParams() {
     const postDate = new Date(frontMatter.date);
     const currentDate = new Date();
     const isFuture = postDate > currentDate;
-
+//vercel error for creating post
+    if (filename.endsWith(".mdx")) {
+      params.push({ slug: encodeURIComponent(filename.replace(".mdx", "")) });
+    }
+//
     if (!isFuture) {
       params.push({ slug: encodeURIComponent(filename.replace(".mdx", "")) });
     }
