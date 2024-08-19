@@ -34,13 +34,21 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const decodedSlug = decodeURIComponent(params.slug);
-  const post = await getPost({ slug: decodedSlug });
+
+  //decode encode
+ // const decodedSlug = decodeURIComponent(params.slug);
+
+
+  //decode encode
+  //const post = await getPost({ slug: decodedSlug });
+  const post = await getPost(params);
   const title = post.frontMatter.title;
   const description = post.frontMatter.description;
 
   const baseURL = "https://mdxblog.io/blog";
-  const canonicalUrl = `${baseURL}/${encodeURIComponent(params.slug)}`;
+    //decode encode
+  //const canonicalUrl = `${baseURL}/${encodeURIComponent(params.slug)}`;
+  const canonicalUrl = `${baseURL}/${params.slug}`;
 
   return {
     title: title,
@@ -64,15 +72,18 @@ export async function generateStaticParams() {
     const currentDate = new Date();
     const isFuture = postDate > currentDate;
 //vercel error for creating post
-    if (filename.endsWith(".mdx")) {
+    /*if (filename.endsWith(".mdx")) {
+      params.push({ slug: encodeURIComponent(filename.replace(".mdx", "")) });
+    }*/
+//encode decode 
+   /* if (!isFuture) {
       params.push({ slug: encodeURIComponent(filename.replace(".mdx", "")) });
     }
-//
+  }*/
     if (!isFuture) {
-      params.push({ slug: encodeURIComponent(filename.replace(".mdx", "")) });
+      params.push({ slug: filename.replace(".mdx", "") });
     }
   }
-
   return params;
 }
 
@@ -81,8 +92,12 @@ export default async function BlogPage({
 }: {
   params: { slug: string };
 }) {
-  const decodedSlug = decodeURIComponent(params.slug);
-  const props = await getPost({ slug: decodedSlug });
+  //encode decode
+ // const decodedSlug = decodeURIComponent(params.slug);
+  //encode decode
+  //const props = await getPost({ slug: decodedSlug });
+  const props = await getPost(params);
+  const slug = params.slug;
   const components = {
     pre: Code,
     YouTube,
@@ -111,7 +126,9 @@ export default async function BlogPage({
       {/* {isDevMode() && ( */}
         <div className="flex gap-2 mb-4">
           <EditPostButton
-            slug={decodedSlug}
+          //encode decode
+            //slug={decodedSlug}
+            slug={slug}
             author={props.frontMatter.author}
           />
           <OpenInVSCode path={props.frontMatter.path} />
