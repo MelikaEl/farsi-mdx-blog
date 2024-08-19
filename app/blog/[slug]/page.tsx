@@ -36,19 +36,19 @@ export async function generateMetadata(
 ): Promise<Metadata> {
 
   //decode encode
- // const decodedSlug = decodeURIComponent(params.slug);
+  const decodedSlug = decodeURIComponent(params.slug);
 
 
   //decode encode
-  //const post = await getPost({ slug: decodedSlug });
-  const post = await getPost(params);
+  const post = await getPost({ slug: decodedSlug });
+ // const post = await getPost(params);
   const title = post.frontMatter.title;
   const description = post.frontMatter.description;
 
   const baseURL = "https://mdxblog.io/blog";
     //decode encode
-  //const canonicalUrl = `${baseURL}/${encodeURIComponent(params.slug)}`;
-  const canonicalUrl = `${baseURL}/${params.slug}`;
+  const canonicalUrl = `${baseURL}/${encodeURIComponent(params.slug)}`;
+ // const canonicalUrl = `${baseURL}/${params.slug}`;
 
   return {
     title: title,
@@ -76,14 +76,14 @@ export async function generateStaticParams() {
       params.push({ slug: encodeURIComponent(filename.replace(".mdx", "")) });
     }*/
 //encode decode 
-   /* if (!isFuture) {
+    if (!isFuture) {
       params.push({ slug: encodeURIComponent(filename.replace(".mdx", "")) });
     }
-  }*/
-    if (!isFuture) {
+  }
+    /*if (!isFuture) {
       params.push({ slug: filename.replace(".mdx", "") });
     }
-  }
+  }*/
   return params;
 }
 
@@ -93,10 +93,10 @@ export default async function BlogPage({
   params: { slug: string };
 }) {
   //encode decode
- // const decodedSlug = decodeURIComponent(params.slug);
+ const decodedSlug = decodeURIComponent(params.slug);
   //encode decode
-  //const props = await getPost({ slug: decodedSlug });
-  const props = await getPost(params);
+  const props = await getPost({ slug: decodedSlug });
+  //const props = await getPost(params);
   const slug = params.slug;
   const components = {
     pre: Code,
@@ -127,8 +127,8 @@ export default async function BlogPage({
         <div className="flex gap-2 mb-4">
           <EditPostButton
           //encode decode
-            //slug={decodedSlug}
-            slug={slug}
+            slug={decodedSlug}
+           // slug={slug}
             author={props.frontMatter.author}
           />
           <OpenInVSCode path={props.frontMatter.path} />
