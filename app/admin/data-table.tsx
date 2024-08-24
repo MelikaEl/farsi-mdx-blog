@@ -52,9 +52,7 @@ import {
 } from "@/components/ui/table";
 
 import Link from "next/link";
-import DateObject from "react-date-object";
-import persian from "react-date-object/calendars/persian";
-import persian_fa from "react-date-object/locales/persian_fa";
+
 
 export type Post = {
   id: string;
@@ -106,27 +104,17 @@ export const columns: ColumnDef<Post>[] = [
       );
     },
     cell: ({ row }) => {
-      const gregorianDate = new Date(row.getValue("date")); //new Date(post.date) acts as a crucial intermediary step, converting potentially varied date string formats from your MDX files into a standardized JavaScript Date object. This standardization is essential for the accurate and consistent conversion to the Persian calendar system in the subsequent steps of your code.
-      const persianDate = new DateObject({
-        date: gregorianDate,
-        calendar: persian,
-        locale: persian_fa,
-      });
+       // Parse the date from the row
+       const date = new Date(row.getValue("date"));
 
-      const formattedDate = `${persianDate.format("DD MMMM YYYY")}`; //YYYY-MM-DD
-      return <div>{formattedDate}</div>;
-
-      // // Parse the date from the row
-      // const date = new Date(row.getValue("date"));
-
-      // // Format the date as 'DD.MM.YY'
-      // const formattedDate = date.toLocaleDateString("en-GB", {
-      //   day: "2-digit",
-      //   month: "2-digit",
-      //   year: "2-digit",
-      // });
-
-      // return <div>{formattedDate}</div>;
+       // Format the date as 'DD.MM.YY'
+       const formattedDate = date.toLocaleDateString("en-GB", {
+         day: "2-digit",
+         month: "2-digit",
+         year: "2-digit",
+       });
+ 
+       return <div>{formattedDate}</div>;
     },
   },
 

@@ -6,10 +6,6 @@ import { parseISO } from "date-fns";
 
 import { useRouter } from "next/navigation";
 
-import DatePicker from "react-multi-date-picker";
-import { DateObject } from "react-multi-date-picker";
-import persian from "react-date-object/calendars/persian";
-import persian_fa from "react-date-object/locales/persian_fa";
 
 import { format } from "date-fns";
 
@@ -53,8 +49,6 @@ import {
 
 import { MultiSelect } from "@/components/rs-multi-select";
 
-import "react-multi-date-picker/styles/colors/green.css";
-import "react-multi-date-picker/styles/backgrounds/bg-dark.css";
 import { useTheme } from "next-themes";
 
 import Editor from "@/components/mdx-editor"; // Import the isolated MDXEditor component because the form doesn't affect the state of the MDXEditor component
@@ -77,16 +71,6 @@ const formSchema = z.object({
   tags: z.string().optional(),
 });
 export function EditPostForm({ postData }: { postData: any }) {
-  const [selectedDate, setSelectedDate] = useState(
-    postData.frontMatter.date
-      ? new DateObject(postData.frontMatter.date)
-      : new DateObject()
-  );
-
-  const handleDateChange = (value: DateObject) => {
-    setSelectedDate(value);
-  };
-
   const [selectedValue, setSelectedValue] = useState("blog");
   const router = useRouter();
 
@@ -111,10 +95,8 @@ export function EditPostForm({ postData }: { postData: any }) {
     const endpoint = "/api/edit-file-locally";
 
     //const formattedDate = values.date ? format(values.date, "yyyy-MM-dd") : "";
-    const formattedDate =
-      selectedDate instanceof DateObject
-        ? selectedDate.toDate().toISOString()
-        : "";
+    const formattedDate =values.date ? format(values.date, "yyyy-MM-dd") : "";
+      
 
     const submissionData = {
       ...values,
