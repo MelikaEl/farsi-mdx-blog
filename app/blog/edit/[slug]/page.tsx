@@ -4,9 +4,9 @@ import { getPost } from "@/lib/posts-utils.mjs";
 
 async function EditBlog({ params }: { params: { slug: string } }) {
  //decode encode
- // const decodedSlug = decodeURIComponent(params.slug);
- // const postData = await getPost({ slug: decodedSlug });
- const postData = await getPost(params);
+  const decodedSlug = decodeURIComponent(params.slug);
+ const postData = await getPost({ slug: decodedSlug });
+ 
 
   return (
     <div className="w-full max-w-xl">
