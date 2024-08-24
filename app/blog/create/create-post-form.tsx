@@ -68,16 +68,16 @@ const formSchema = z.object({
   date: z.date(), // Make dob optional
   type: z.string().optional(),
   title: z.string().min(3, {
-    message: "Title must be at least 2 characters.",
+    message: "عنوان باید حداقل 2 کاراکتر باشد.",
   }),
   author: z.string().min(3, {
-    message: "Author must be at least 3 characters.",
+    message: "نویسنده باید حداقل 3 کاراکتر داشته باشد.",
   }),
   description: z.string().min(15, {
-    message: "Description must be at least 15 characters.",
+    message: "توضیحات باید حداقل 15 کاراکتر باشد.",
   }),
   content: z.string().min(2, {
-    message: "Content must be at least 2 characters.",
+    message: "محتوا باید حداقل 2 کاراکتر باشد.",
   }),
   categories: z.array(z.string()).nonempty(),
   tags: z.string().optional(),
@@ -94,7 +94,7 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
       author: "",
       description: "",
       content: "",
-      categories: ["Web Development"],
+      categories: ["توسعه وب"],
       tags: "",
     },
   });
@@ -136,7 +136,7 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
       const result = await response.json();
       console.log("Success:", result);
 
-      // Reset the form here
+      // Reset the form heref
       form.reset();
 
       router.push(`/blog/${result}`); // Redirect to the blog page
@@ -162,7 +162,7 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
           name="type"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Post Type</FormLabel>
+              <FormLabel>نوع پست</FormLabel>
 
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
@@ -171,8 +171,8 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="blog">Blog</SelectItem>
-                  <SelectItem value="project">Project</SelectItem>
+                  <SelectItem value="blog">وبلاگ</SelectItem>
+                  <SelectItem value="project">پروژه</SelectItem>
                 </SelectContent>
               </Select>
 
@@ -186,7 +186,7 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
           name="date"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <FormLabel className="font-semibold text-md">Date</FormLabel>
+              <FormLabel className="font-semibold text-md">تاریخ انتشار</FormLabel>
               <DatePickerField field={field} />
               {/* <FormDescription>
                 Your date of birth is used to calculate your age.
@@ -201,9 +201,9 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
           name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Post Title</FormLabel>
+              <FormLabel>عنوان پست</FormLabel>
               <FormControl>
-                <Input placeholder="Title" {...field} />
+                <Input placeholder="عنوان" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -215,9 +215,9 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
           name="author"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Author</FormLabel>
+              <FormLabel>نویسنده</FormLabel>
               <FormControl>
-                <Input placeholder="Author" {...field} />
+                <Input placeholder="نویسنده" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -229,9 +229,9 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Description</FormLabel>
+              <FormLabel>شرح</FormLabel>
               <FormControl>
-                <Textarea placeholder="Description" {...field} />
+                <Textarea placeholder="شرح" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -242,7 +242,7 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
           name="content"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Content</FormLabel>
+              <FormLabel>محتوا</FormLabel>
               <FormControl>
               <Editor
                   initialContent={form.watch("content")}
@@ -259,7 +259,7 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
           name="categories"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>categories</FormLabel>
+              <FormLabel>دسته بندی ها</FormLabel>
               <FormControl>
                 <MultiSelect
                   selectedCategories={field.value}
@@ -275,15 +275,15 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
           name="tags"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Tags</FormLabel>
+              <FormLabel>برچسب ها</FormLabel>
               <FormControl>
-                <Input placeholder="Enter tags (comma separated)" {...field} />
+                <Input placeholder="برچسب ها را وارد کنید (با کاما از هم جدا باشند)" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Create</Button>
+        <Button type="submit">ایجاد</Button>
       </form>
     </Form>
   );
