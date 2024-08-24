@@ -41,6 +41,29 @@ import { MultiSelect } from "@/components/rs-multi-select";
 
 import { useRouter } from "next/navigation";
 
+import dynamic from "next/dynamic"; //for SSR renndering in Editor component
+import {
+  MDXEditor,
+  MDXEditorMethods,
+  UndoRedo,
+  BoldItalicUnderlineToggles,
+  CreateLink,
+  toolbarPlugin,
+  linkPlugin,
+  linkDialogPlugin,
+  InsertImage,
+  imagePlugin,
+} from "@mdxeditor/editor";
+import "@mdxeditor/editor/style.css";
+import Editor from "@/components/mdx-editor"; // Import the isolated MDXEditor component
+
+
+interface EditorProps {
+  markdown: string;
+  editorRef?: React.MutableRefObject<MDXEditorMethods | null>; //This line defines a prop called editorRef with a specific TypeScript type. Let's examine each part:editorRef?:The ? after editorRef indicates that this prop is optional. It means that when using the component, you don't have to provide this prop if you don't need it.React.MutableRefObject:This is a type provided by React for mutable refs.Mutable refs are used to hold a mutable value that persists for the full lifetime of the component.<MDXEditorMethods | null>:This is a generic type parameter for MutableRefObject.It specifies that the ref can hold either an object of type MDXEditorMethods or null.The | symbol represents a union type, meaning it can be one type or the other.MDXEditorMethods:This is likely an interface or type defined by the MDXEditor library. It probably contains methods that can be called on the editor instance, such as focusing the editor, getting or setting content, etc.
+}
+
+
 const formSchema = z.object({
   date: z.date(), // Make dob optional
   type: z.string().optional(),
@@ -60,7 +83,7 @@ const formSchema = z.object({
   tags: z.string().optional(),
 });
 
-export function CreatePostForm() {
+export function CreatePostForm({ markdown, editorRef }: EditorProps) {
   const [selectedValue, setSelectedValue] = useState("blog");
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -124,6 +147,12 @@ export function CreatePostForm() {
       // Handle error scenario (e.g., show an error message)
     }
   }
+
+  const MDXEditor = dynamic(
+    () => import("@mdxeditor/editor").then((mod) => mod.MDXEditor),
+    { ssr: false }
+  );
+
 
   return (
     <Form {...form}>
@@ -215,11 +244,9 @@ export function CreatePostForm() {
             <FormItem>
               <FormLabel>Content</FormLabel>
               <FormControl>
-                <Textarea
-                  id="content"
-                  className="h-[300px]"
-                  placeholder="Content"
-                  {...field}
+              <Editor
+                  initialContent={form.watch("content")}
+                  onContentChange={(value) => form.setValue("content", value)}
                 />
               </FormControl>
               <FormMessage />
