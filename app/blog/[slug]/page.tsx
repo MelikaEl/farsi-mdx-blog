@@ -30,7 +30,9 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const post = await getPost(params);
+  const decodedSlug = decodeURIComponent(params.slug);
+  const post = await getPost({ slug: decodedSlug });
+
   // console.log("post:", post);
   const title = post.frontMatter.title;
   const description = post.frontMatter.description;
@@ -39,7 +41,7 @@ export async function generateMetadata(
   const baseURL = "https://mdxblog.io/blog"; // Replace with your actual domain
 
   // Construct the full canonical URL
-  const canonicalUrl = `${baseURL}/${params.slug}`;
+  const canonicalUrl = `${baseURL}/${encodeURIComponent(params.slug)}`;
 
   return {
     title: title,
@@ -71,7 +73,7 @@ export async function generateStaticParams() {
     const isFuture = postDate > currentDate;
 
     if (!isFuture) {
-      params.push({ slug: filename.replace(".mdx", "") });
+      params.push({ slug: encodeURIComponent(filename.replace(".mdx", "")) });
     }
 
     //
@@ -88,9 +90,8 @@ export default async function BlogPage({
   params: { slug: string };
 }) {
   //
-  const props = await getPost(params);
-
-  const slug = params.slug;
+  const decodedSlug = decodeURIComponent(params.slug);
+  const props = await getPost({ slug: decodedSlug });
 
   const components = {
     pre: Code,
@@ -110,7 +111,7 @@ export default async function BlogPage({
       </div>
     
         <div className="flex gap-2 mb-4">
-          <EditPostButton slug={slug} author={props.frontMatter.author} />
+          <EditPostButton slug={decodedSlug} author={props.frontMatter.author} />
           <OpenInVSCode path={props.frontMatter.path} />
         </div>
  
