@@ -153,6 +153,8 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
     { ssr: false }
   );
 
+  const direction = "rtl";
+
 
   return (
     <Form {...form}>
@@ -166,11 +168,11 @@ export function CreatePostForm({ markdown, editorRef }: EditorProps) {
 
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
-                  <SelectTrigger className="w-[180px]">
+                  <SelectTrigger className="w-[180px]" dir={direction}>
                     <SelectValue placeholder="Select post type" />
                   </SelectTrigger>
                 </FormControl>
-                <SelectContent>
+                <SelectContent dir={direction}>
                   <SelectItem value="blog">وبلاگ</SelectItem>
                   <SelectItem value="project">پروژه</SelectItem>
                 </SelectContent>
