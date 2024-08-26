@@ -300,6 +300,10 @@
   outline: none;
 }
 
+.rtl {
+  direction: rtl;
+}
+
 
 /*.custom-input {
   border-radius: 15px;
