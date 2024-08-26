@@ -30,19 +30,19 @@ function CachePostsButton() {
 
   return (
     <>
-      {/* {isDevMode() && ( */}
+      {isDevMode() && ( 
         <div>
           <Button
             title="پست‌های کش برای به‌روزرسانی رول وبلاگ."
             onClick={handleCachePosts}
           >
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-2 items-center"> 
               {" "}
               <FileIcon /> ذخیره پست ها
             </div>
           </Button>
         </div>
-      {/* )} */}
+      )}
     </>
   );
 }

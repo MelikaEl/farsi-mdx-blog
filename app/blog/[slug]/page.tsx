@@ -109,12 +109,15 @@ export default async function BlogPage({
         <div>{props.frontMatter.date}</div>
         <div>توسط: {props.frontMatter.author}</div>
       </div>
-    
+      {isDevMode() && (
         <div className="flex gap-2 mb-4">
-          <EditPostButton slug={decodedSlug} author={props.frontMatter.author} />
+          <EditPostButton
+            slug={decodedSlug}
+            author={props.frontMatter.author}
+          />
           <OpenInVSCode path={props.frontMatter.path} />
         </div>
- 
+      )}
       <div className="flex gap-4"></div>
       <article className="mdx">
         <MDXRemote source={props.content} components={components} />
@@ -122,12 +125,3 @@ export default async function BlogPage({
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
