@@ -1,18 +1,22 @@
 Here’s a suggested description of your changes for the README.md file on GitHub:
-Changes Made
+
+
+**Changes Made**
+
 This project has been enhanced with several significant updates to improve functionality, usability, and accessibility. Below are the key modifications:
-MDXEditor Integration:
-Replaced the textarea component from Shadcn with MDXEditor, which offers advanced features such as:
-Undo and redo functionality
-Text formatting options (bold, italic, underline)
-Ability to insert video links and image links
-Thematic breaks
-Block types with 8 options including:
-Paragraph
-Quote
-Headings (1 to 6)
-Language Translation:
-Translated the entire MDX blog content from English to Persian, making it accessible to a wider audience.
+    - **MDXEditor Integration**:
+         -Replaced the textarea component from Shadcn with MDXEditor, which offers advanced features such as:
+         -Undo and redo functionality
+         -Text formatting options (bold, italic, underline)
+         -Ability to insert video links and image links
+         -Thematic breaks
+         -Block types with 8 options including:
+         -Paragraph
+         -Quote
+         -Headings (1 to 6)
+         
+    - **Language Translation:**
+          -Translated the entire MDX blog content from English to Persian, making it accessible to a wider audience.
 Styling Updates:
 Changed the website's font for improved readability.
 Updated the theme color from yellow to green for a fresh visual appeal.
