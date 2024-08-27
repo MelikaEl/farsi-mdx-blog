@@ -206,7 +206,7 @@ export function EditPostForm({ postData }: { postData: any }) {
             name="date"
             render={({ field }) => (
               <FormItem className="flex flex-col">
-                <FormLabel className="font-semibold text-md">Date</FormLabel>
+                <FormLabel className="font-semibold text-md">تاریخ</FormLabel>
                 <DatePickerField field={field} />
                 {/* <FormDescription>
                 Your date of birth is used to calculate your age.
