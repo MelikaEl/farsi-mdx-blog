@@ -76,12 +76,12 @@ const Blog = async ({
           numBlogs={blogs.length}
           sort={sort as string}
         />
-        <SortPosts
+        {/* <SortPosts
           sort={sort as string}
           currentPage={currentPage}
           limit={postsPerPage}
           searchTerm={searchTerm as string}
-        />
+        /> */}
       </div>
       <div>
         {blogs.length === 0 ? (
