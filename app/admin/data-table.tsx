@@ -267,9 +267,7 @@ export function DataTable() {
 
   const globalFilterFn: FilterFn<Post> = (row, columnIds, filterValue) => {
     const lowercasedFilter = filterValue?.toLowerCase() || "";
-
-    console.log("row!!:", row);
-
+  
     // Return true if the row should be included in the filter
     return (
       row.original.title.toLowerCase().includes(lowercasedFilter) ||
@@ -277,8 +275,8 @@ export function DataTable() {
       row.original.type.toLowerCase().includes(lowercasedFilter) ||
       (row.original.tags &&
         row.original.tags.some((tag) =>
-          tag.toLowerCase().includes(lowercasedFilter)
-        ))
+          tag && typeof tag === 'string' ? tag.toLowerCase().includes(lowercasedFilter) : false
+        ))//This modification adds a check to ensure that tag is not null or undefined and is a string before calling toLowerCase(). If tag is null, undefined, or not a string, it will be skipped in the filter. This change should resolve the TypeError you're encountering when searching for posts.
     );
   };
 
