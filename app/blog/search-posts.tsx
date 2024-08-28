@@ -6,6 +6,7 @@ import { useState, useCallback, useEffect, useRef, use } from "react";
 import React from "react";
 import debounce from "lodash/debounce";
 
+
 const SearchPosts = ({
   currentPage,
   limit,
@@ -23,64 +24,33 @@ const SearchPosts = ({
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  let search = searchParams.get("search");
-
   useEffect(() => {
-    // Focus the input whenever inputValue changes
-    if (inputRef.current && search) {
-      inputRef.current.focus();
-    }
-  }, [inputValue]);
-
-  useEffect(() => {
-    if (search === null) {
-      search = "";
-    }
-    const searchFromUrl = search as string;
-    if (searchFromUrl !== inputValue) {
-      setInputValue(searchFromUrl);
-    }
-  }, [searchParams,search]);
-
-  useEffect(() => {
-    // console.log("sort", sort);
-  }, [sort]);
+    const search = searchParams.get("search") || "";
+    setInputValue(search);
+  }, [searchParams]);
 
   const searchForTerm = useCallback(
     (searchTerm: string) => {
-      if (numBlogs === 0) {
-        router.push(
-          `/blog?limit=${limit}&page=${1}${
-            searchTerm ? `&search=${searchTerm}` : ""
-          }${sort !== "date_desc" ? `&sort=${sort}` : ""}`
-        );
+      const newSearchParams = new URLSearchParams(searchParams);
+      if (searchTerm) {
+        newSearchParams.set("search", searchTerm);
       } else {
-        router.push(
-          `/blog?limit=${limit}&page=${currentPage}${
-            searchTerm ? `&search=${searchTerm}` : ""
-          }${sort !== "date_desc" ? `&sort=${sort}` : ""}`
-        );
+        newSearchParams.delete("search");
       }
+      newSearchParams.set("page", "1"); // Reset to first page on new search
+      router.push(`/blog?${newSearchParams.toString()}`);
     },
-    [limit, currentPage, sort, router,numBlogs]
+    [router, searchParams]
   );
 
-  const updateSearch = useCallback(
-    debounce((searchTerm: string) => {
-      searchForTerm(searchTerm);
-    }, 1500),
-    [searchForTerm] // dependencies of the debounced function
-  );
-
-  const handleChange = (event: any) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = event.target.value;
     setInputValue(searchTerm);
-    updateSearch(searchTerm);
+    searchForTerm(searchTerm);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const inputValue = event.currentTarget.searchTerm.value;
     searchForTerm(inputValue);
   };
 
@@ -91,7 +61,7 @@ const SearchPosts = ({
       </div>{" "}
       <form onSubmit={handleSubmit}>
         <div className="w-full">
-          <Input
+        <Input
             ref={inputRef}
             type="text"
             name="searchTerm"
