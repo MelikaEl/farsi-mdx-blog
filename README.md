@@ -22,6 +22,7 @@ This project has been enhanced with several significant updates to improve funct
 
 - **Bug Fixes**:
   - Resolved an issue with the **delete post button** in the edit post section, ensuring it functions correctly and deletes posts as intended.
+  - Fixed the search posts functionality on the blog page and admin page.
 
 - **Content Updates**:
   - Modified the content of the **About** and **Privacy** pages to reflect the new changes and provide relevant information.
